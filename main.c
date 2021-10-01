@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/01 12:40:57 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/01 14:44:38 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,27 @@ typedef struct	s_mlx
 	t_img		img;
 }				t_mlx;
 
-
-//int key_hook(int keycode, t_mlx mlx)
-int key_hook(int keycode)
+int	close(int keycode, t_mlx *vars)
 {
-	//to do something
-	if (keycode)
-		// do somesthing
+	if( keycode){
+		//do nothing
+	}
+	if (vars){ //do nothing
+	}
+	return mlx_destroy_window(vars->mlx_instance, vars->win);	
+}
 
-	printf("This is bullshit");
+int ft_resize_msg(void)
+{	
+	printf("The screen has new resolution");
+	return(1);
 }
 
 int main ()
 {
 	//https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
 	t_mlx	mlx; //Here I first create my struct that will contains all the "MLX stuff"
-	//int		count_w;
+	int		count_w;
 	int		count_h;
 
 	count_h = -1;
@@ -81,30 +86,32 @@ int main ()
 	 Now just a little example : here is a loop that will draw each pixels that
 	 have an odd width in white and the ones that have an even width in black.
 	*/
-	// while (++count_h < WIN_HEIGHT)
-	// {
-	// 	count_w = -1;
-	// 	while (++count_w < WIN_WIDTH)
-	// 	{
-	// 		if (count_w % 2)
-	// 			/*
-	// 			 As you can see here instead of using the mlx_put_pixel function
-	// 			 I just assign a color to each pixel one by one in the image,
-	// 			 and the image will be printed in one time at the end of the loop.
-	// 			 Now one thing to understand here is that you're working on a 1-dimensional
-	// 			 array, while your window is (obviously) 2-dimensional.
-	// 			 So, instead of having data[height][width] here you'll have the following
-	// 			 formula : [current height * max width + current width] (as you can see below)
-	// 			*/
-	// 			mlx.img.data[count_h * WIN_WIDTH + count_w] = 0xFFFFFF;
-	// 		else
-	// 			mlx.img.data[count_h * WIN_WIDTH + count_w] = 0;
-	// 	}
-	// }
+	while (++count_h < WIN_HEIGHT)
+	{
+		count_w = -1;
+		while (++count_w < WIN_WIDTH)
+		{
+			if (count_w % 2)
+				/*
+				 As you can see here instead of using the mlx_put_pixel function
+				 I just assign a color to each pixel one by one in the image,
+				 and the image will be printed in one time at the end of the loop.
+				 Now one thing to understand here is that you're working on a 1-dimensional
+				 array, while your window is (obviously) 2-dimensional.
+				 So, instead of having data[height][width] here you'll have the following
+				 formula : [current height * max width + current width] (as you can see below)
+				*/
+				mlx.img.data[count_h * WIN_WIDTH + count_w] = 0xFFFFFF;
+			else
+				mlx.img.data[count_h * WIN_WIDTH + count_w] = 0;
+		}
+	}
+	//mlx_hook(mlx.win, 2, 1L<<0, close, &mlx);
+	// resize
+	mlx_hook(mlx.win, 25, 1L<<18, ft_resize_msg, &mlx);
+	
 	//Now you just have to print the image using mlx_put_image_to_window !
 	mlx_put_image_to_window(mlx.mlx_instance, mlx.win, mlx.img.img_ptr, 0, 0);
 	mlx_loop(mlx.mlx_instance);
-	mlx_destroy_image(mlx.mlx_instance, mlx.img.img_ptr);
-	mlx_destroy_window(mlx.mlx_instance, mlx.win);
 	return (0);
 }
