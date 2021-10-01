@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/09/30 20:57:05 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/01 12:40:57 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,31 @@ typedef struct	s_mlx
 }				t_mlx;
 
 
+//int key_hook(int keycode, t_mlx mlx)
+int key_hook(int keycode)
+{
+	//to do something
+	if (keycode)
+		// do somesthing
+
+	printf("This is bullshit");
+}
+
 int main ()
 {
 	//https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
 	t_mlx	mlx; //Here I first create my struct that will contains all the "MLX stuff"
-	int		count_w;
+	//int		count_w;
 	int		count_h;
 
 	count_h = -1;
+	
 	//First you need to call mlx_init and store its return value.
 	mlx.mlx_instance = mlx_init();
-	//Now do the same with mlx_new_window
 	mlx.win = mlx_new_window(mlx.mlx_instance, WIN_WIDTH, WIN_HEIGHT, "A simple shit");
+	
+	
+
 	//One more time with mlx_new_image
 	mlx.img.img_ptr = mlx_new_image(mlx.mlx_instance, WIN_WIDTH, WIN_HEIGHT);
 	/*
@@ -62,8 +75,6 @@ int main ()
 	 This way, the array will have the exact same size as your window, and each index
 	 will represent one complete color of a pixel !
 	*/ 
-	
-	
 	mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bpp, &mlx.img.size_l,
 		&mlx.img.endian);
 	/*
@@ -93,5 +104,7 @@ int main ()
 	//Now you just have to print the image using mlx_put_image_to_window !
 	mlx_put_image_to_window(mlx.mlx_instance, mlx.win, mlx.img.img_ptr, 0, 0);
 	mlx_loop(mlx.mlx_instance);
+	mlx_destroy_image(mlx.mlx_instance, mlx.img.img_ptr);
+	mlx_destroy_window(mlx.mlx_instance, mlx.win);
 	return (0);
 }

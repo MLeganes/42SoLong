@@ -4,6 +4,9 @@
 # include <math.h>
 # include <mlx.h>
 
+// To change with my ftlib
+#include <stdio.h>
+
 //https://github.com/keuhdall/images_example
 
 /*
@@ -45,5 +48,7 @@
 // 	void		*win;
 // 	t_img		img;
 // }				t_mlx;
+
+int key_hook(int keycode, t_mlx mlx);
 
 #endif
