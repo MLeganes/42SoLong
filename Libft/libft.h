@@ -6,12 +6,13 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 10:13:27 by amorcill          #+#    #+#             */
-/*   Updated: 2021/07/20 10:14:04 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/01 15:52:00 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# define BUFFER_SIZE 48
 # include <stdio.h>
 # include <string.h>
 # include <stdlib.h>
@@ -70,4 +71,14 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+/* get next line*/
+char	*get_next_line(int fd);
+char	*gnl_update_buff(char *fdbuff);
+int		gnl_find_index(const char *buff, int c);
+char	*gnl_strdup(const char *s);
+size_t	gnl_strlen(const char *ch);
+char	*gnl_strjoin(char *s1, char *s2);
+char	*gnl_substr(char const *s, unsigned int start, size_t len);
+
 #endif
