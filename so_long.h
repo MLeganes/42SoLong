@@ -3,6 +3,8 @@
 
 # include <math.h>
 # include <mlx.h>
+# include <libft.h>
+
 
 // To change with my ftlib
 #include <stdio.h>

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   solong_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/01 14:44:38 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/04 17:43:11 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ typedef struct	s_mlx
 	t_img		img;
 }				t_mlx;
 
-int	close(int keycode, t_mlx *vars)
-{
-	if( keycode){
-		//do nothing
-	}
-	if (vars){ //do nothing
-	}
-	return mlx_destroy_window(vars->mlx_instance, vars->win);	
-}
+// int	close(int keycode, t_mlx *vars)
+// {
+// 	if( keycode){
+// 		//do nothing
+// 	}
+// 	if (vars){ //do nothing
+// 	}
+// 	return mlx_destroy_window(vars->mlx_instance, vars->win);	
+// }
 
 int ft_resize_msg(void)
 {	
@@ -52,15 +52,38 @@ int ft_resize_msg(void)
 	return(1);
 }
 
-int main ()
+static int main_check_args(int args, char **argv)
+{
+	int		error;
+	char	*ret;
+
+	error = -1;
+	if( args == 2 )
+	{
+		ret = ft_strnstr(argv[1], ".ber", ft_strlen(argv[1]));
+		if( ret != NULL && ret[4] == '\0')
+		{
+			error = 2;
+		}
+	}
+	return (error);
+}
+
+int main (int argc, char **argv)
 {
 	//https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
 	t_mlx	mlx; //Here I first create my struct that will contains all the "MLX stuff"
 	int		count_w;
 	int		count_h;
+	int		error;
 
 	count_h = -1;
-	
+
+	error = main_check_args(argc, argv);
+	if ( error < 0)
+		return (error);
+
+		
 	//First you need to call mlx_init and store its return value.
 	mlx.mlx_instance = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx_instance, WIN_WIDTH, WIN_HEIGHT, "A simple shit");
