@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/04 17:43:11 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/04 18:02:43 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,23 @@ int main (int argc, char **argv)
 	t_mlx	mlx; //Here I first create my struct that will contains all the "MLX stuff"
 	int		count_w;
 	int		count_h;
-	int		error;
 
+	// new variableds
+	int		error;
+	int		fd;
+	
 	count_h = -1;
 
+	error = -1;
 	error = main_check_args(argc, argv);
 	if ( error < 0)
 		return (error);
+	fd = open(argv[1], O_RDONLY);
+	if( fd <= 0)
+		return(error);
+	error = main_init();
+	
+	
 
 		
 	//First you need to call mlx_init and store its return value.
