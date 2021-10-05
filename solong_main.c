@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/05 17:50:50 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/05 18:11:28 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,26 @@ int		main_init_level(t_mlx *mlx, char **argv)
 	return (1);
 }
 
+
+int main_init_imagen(t_mlx *mlx)
+{
+		int	iheight;
+	int	jwidth;
+
+	iheight = 0;
+	jwidth = 0;
+	while (iheight < mlx->img_height)
+	{
+		while (jwidth < mlx->img_width)
+		{
+			mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->path,	iheight * 100, jwidth * 100);
+			//ft_paintpath(jwidth, iheight, mygame);
+			jwidth++;
+		}
+		iheight++;
+	}
+}
+
 int main_init_game(t_mlx *mlx)
 {
 	mlx->path_path = mlx_xpm_file_to_image(mlx->mlx, "./imgs/Path.xpm", mlx->x, mlx->y);
@@ -149,6 +169,7 @@ int main (int argc, char **argv)
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, mlx.img_height, mlx.img_width, "The funland");
 	error = main_init_game(&mlx);
+	error = main_init_imagen(&mlx);
 		
 	return(0);
 		
