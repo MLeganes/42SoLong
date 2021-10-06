@@ -38,14 +38,20 @@ typedef struct	s_mlx
 	int			img_width;
 	int			img_height;
 
-	char		*path_path;
-	char		*path_wall;
-	char		*path_player1;
-	char		*path_exit;
-	char		*path_collect;
+	void		*pointer_path;
+	void		*pointer_wall;
+	void		*pointer_player1;
+	void		*pointer_exit;
+	void		*pointer_collect;
 
-	int			*x;
-	int			*y;
+	char		*relative_path_path;
+	char		*relative_path_wall;
+	char		*relative_path_player1;
+	char		*relative_path_exit;
+	char		*relative_path_collect;
+
+	int			x;
+	int			y;
 }				t_mlx;
 
 #endif
