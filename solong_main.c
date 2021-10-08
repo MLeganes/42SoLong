@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/06 19:31:27 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/08 16:22:46 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,8 @@ static int main_check_args(int args, char **argv)
 		{
 			aux[i] = argv[1][i];
 			i++;
-		}	
-		
-		if( ret != NULL && ret[4] == '\0')
+		}		
+		if (ret != NULL && ret[4] == '\0')
 		{
 			error = 2;
 		}
@@ -72,6 +71,9 @@ static int main_check_args(int args, char **argv)
 	return (error);
 }
 
+/*
+ * Load the map.ber. Read the file and save the lines.
+ */
 int		main_init_level(t_mlx *mlx, char **argv)
 {	
 	int		lines;
@@ -84,7 +86,7 @@ int		main_init_level(t_mlx *mlx, char **argv)
 	mlx->map = (char **)malloc( lines * (sizeof(char *)));
 	if(mlx->map == NULL)
 		return (-8);
-	fd = open(argv[1], O_RDONLY, 0);
+	fd = open(argv[1], O_RDONLY);
 	if( fd <= 0)
 		return (-2);// Call func. -2 error in open file
 	line = get_next_line(fd);
@@ -92,9 +94,8 @@ int		main_init_level(t_mlx *mlx, char **argv)
 	while(line)
 	{
 		mlx->map[lines] = line;
-		free(line);
 		line = get_next_line(fd);
-		lines++;		
+		lines++;
 	}	
 	if (close(fd) < 0)
 		return(-4);		
@@ -111,7 +112,8 @@ int main_init_load_xpmfile(t_mlx *mlx)
 	mlx->pointer_collect = mlx_xpm_file_to_image(mlx->mlx, "./imgs/Collect.xpm", &mlx->x, &mlx->y);
 	return (1);
 }	
-int main_init_load_image(t_mlx *mlx)
+
+static int  main_init_load_image_base(t_mlx *mlx)
 {
 	//array
 	int height;
@@ -122,26 +124,46 @@ int main_init_load_image(t_mlx *mlx)
 	w = 0;
 	while(height < mlx->img_height)
 	{
+		w = 0;
 		while (w < mlx->img_width)
 		{
-			///aqui
-			rotooooooooo
-			//continue.......
+			aux = mlx->map[height][w];
+			mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_path,	w * 100, height * 100);
+			w++;
+		}
+		height++;
+	}
+	return (0);
+}
 
-
-			
-			aux = mlx->map[height][w]; 		
-			/* code */
-			if(mlx->map[height][w] == '0' )  
+int main_init_load_image(t_mlx *mlx)
+{
+	//array
+	int height;
+	int w;
+	char aux;
+	
+	main_init_load_image_base(mlx);
+	
+	height = 0;
+	w = 0;
+	while(height < mlx->img_height)
+	{
+		w = 0;
+		while (w < mlx->img_width)
+		{
+			aux = mlx->map[height][w];
+			if(mlx->map[height][w] == '0')
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_path,	w * 100, height * 100);
-			if(mlx->map[height][w] == '1' )  
+			if(mlx->map[height][w] == '1' )
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_wall,	w * 100, height * 100);
-			if(mlx->map[height][w] == 'P' )  
+			if(mlx->map[height][w] == 'P' )
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_player1,	w * 100, height * 100);
-			if(mlx->map[height][w] == 'C' )  
+			if(mlx->map[height][w] == 'C' )
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_collect,	w * 100, height * 100);
-			if(mlx->map[height][w] == 'E' )  
+			if(mlx->map[height][w] == 'E' )
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_exit,	w * 100, height * 100);
+			w++;
 		}
 		height++;
 	}
@@ -159,17 +181,14 @@ int main (int argc, char **argv)
 	error = main_check_args(argc, argv);
 	if ( error <= 0)
 		error = -1;// Call function error -- -1 error in args	
-	
-	error = main_init_level(&mlx, argv);
-	if (error <= 0)
-		error = -3;	
-		
+	error = main_init_level(&mlx, argv);		
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, mlx.img_height * 100, mlx.img_width * 100, "The funland");
 	
 	error = main_init_load_xpmfile(&mlx);
 	error = main_init_load_image(&mlx);
 	//mlx_hook(mlx.win, )
+	mlx_hook(mlx.mlx, 2, (1L << 0), ft_playermove, &mlx);
 	mlx_loop(mlx.mlx);
 
 	return(0);

@@ -6,7 +6,7 @@
 #    By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 11:24:29 by amorcill          #+#    #+#              #
-#    Updated: 2021/10/04 14:23:16 by amorcill         ###   ########.fr        #
+#    Updated: 2021/10/08 14:55:13 by amorcill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,10 +51,17 @@ fclean: clean
 
 re: fclean $(NAME)
 
+
+
+### References
 # https://makefiletutorial.com/
 # https://opensource.com/article/18/8/what-how-makefile
 
-# make commands!!!
+### make commands!!!
 #		make -n => to see all the steeps
 
-	
+#### To avoid warnings
+#%.o : %.c 
+#    @cc -O2 -w -DSTRINGPUTX11   -c -o $@ $<
+#%.o : %.m
+#    @cc -O2 -w -DSTRINGPUTX11   -c -o $@ $<
