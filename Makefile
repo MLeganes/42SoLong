@@ -6,7 +6,7 @@
 #    By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 11:24:29 by amorcill          #+#    #+#              #
-#    Updated: 2021/10/08 14:55:13 by amorcill         ###   ########.fr        #
+#    Updated: 2021/10/11 16:04:28 by amorcill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME	= so_long
 CC		= gcc
 FLAGS	= -Wall -Wextra -Werror
 OBJS	= $(patsubst %.c, %.o, $(SRCS))
-SRCS	= solong_main.c
+SRCS	= solong_main.c \
+		  solong_event_keys.c
 
 all: $(NAME)
 
@@ -24,14 +25,6 @@ $(NAME): libft libmlx $(OBJS)
 #	make -C Libft all
 # -L LIBRARY location of the libmlx => Llibmlx
 # -l (for lib) libmlx	(remove lib) => lmlx
-
- .PHONY: libft
-libft:
-	make -C libft all
-
-.PHONY: libmlx
-mlx:
-	make -C libmlx all
 
 # COMPILING
 %.o: %.c	
@@ -44,6 +37,7 @@ clean:
 	rm -f *.o
 	rm -f *.out
 	make -C libmlx clean
+	make -C libft clean
 
 fclean: clean
 	make -C libft fclean	
@@ -51,7 +45,13 @@ fclean: clean
 
 re: fclean $(NAME)
 
+.PHONY: libft
+libft:
+	make -C libft all
 
+.PHONY: libmlx
+mlx:
+	make -C libmlx all
 
 ### References
 # https://makefiletutorial.com/

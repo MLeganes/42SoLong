@@ -6,10 +6,11 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/08 16:22:46 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/11 19:12:06 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+//#include <so_long.>
 #include "so_long.h"
 
 int ft_resize_msg(void)
@@ -26,7 +27,7 @@ int ft_count_lines(t_mlx *mlx, char **argv)
 	int fd;
 	
 	lines = 0;
-	fd = open(argv[1], O_RDONLY, 0);
+	fd = open(argv[1], O_RDONLY);
 	if( fd <= 0)
 		return (-2);
 	line = get_next_line(fd);
@@ -170,6 +171,13 @@ int main_init_load_image(t_mlx *mlx)
 	return (0);
 }
 
+int solong_player(int key, t_mlx *mlx)
+{
+	mlx->name = "so long";
+	printf("key press: %d in game: %s \n", key, mlx->name);	
+	return (1);	
+}
+
 int main (int argc, char **argv)
 {
 	//https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
@@ -188,7 +196,8 @@ int main (int argc, char **argv)
 	error = main_init_load_xpmfile(&mlx);
 	error = main_init_load_image(&mlx);
 	//mlx_hook(mlx.win, )
-	mlx_hook(mlx.mlx, 2, (1L << 0), ft_playermove, &mlx);
+	mlx_hook(mlx.win, EVENT_KEY_PRESS, (MASK_KEY_PRESS), solong_event_keys, &mlx);
+
 	mlx_loop(mlx.mlx);
 
 	return(0);
