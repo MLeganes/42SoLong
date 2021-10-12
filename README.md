@@ -1,7 +1,9 @@
 # 42SoLong
 
-# Commands
 
+# References
+
+### [man]
 	MiniLibX - Simple Graphical Interface Library
 	man /usr/share/man/man3/mlx.1
 							mlx_loop.1        
@@ -9,20 +11,14 @@
 							mlx_new_window.1  
 							mlx_pixel_put.1
 
-# References
-
 ### [info minilibx basic]
-https://github.com/keuhdall/images_example 
-https://harm-smits.github.io/42docs/libs/minilibx 
+	https://harm-smits.github.io/42docs/libs/minilibx 
+	https://github.com/keuhdall/images_example 
 
 ### [git hub minilibx]
-https://github.com/qst0/ft_libgfx
-
-
+	https://github.com/qst0/ft_libgfx
 
 #### To Do
-	https://github.55860.com/keuhdall/images_example 
-
 	[code]
 	https://github.com/AmberLawr/so_long 
 
@@ -34,7 +30,8 @@ https://github.com/qst0/ft_libgfx
 
 
 
-- https://stackoverflow.com/c/42network/questions/531		[mlx]
+[mlx]
+- https://stackoverflow.com/c/42network/questions/531		
 
   
 - https://qst0.github.io/ft_libgfx/man_mlx.html

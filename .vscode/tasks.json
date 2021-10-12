@@ -7,10 +7,10 @@
             "args": [
                 "-g",
                 "-I${fileDirname}/mlx",
-                "-L${fileDirname}/mlx",
+                "-L${fileDirname}/libmlx",
                 "-lmlx",
-                "-I${fileDirname}/Libft",
-                "-L${fileDirname}/Libft",
+                "-I${fileDirname}/ft",
+                "-L${fileDirname}/libft",
                 "-lft",
                 "-framework",
                 "OpenGL",
