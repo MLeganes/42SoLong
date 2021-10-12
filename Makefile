@@ -6,7 +6,7 @@
 #    By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 11:24:29 by amorcill          #+#    #+#              #
-#    Updated: 2021/10/12 11:39:06 by amorcill         ###   ########.fr        #
+#    Updated: 2021/10/12 13:45:38 by amorcill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS	= solong_main.c \
 all: $(NAME)
 
 # LINKING
-$(NAME): libft libmlx $(OBJS)
+$(NAME): makelibft makelibmlx $(OBJS)
 	$(CC) -Llibmlx -lmlx -Llibft -lft -framework OpenGL -framework AppKit -o $(NAME) $(OBJS)
 #	make -C Libft all
 # -L LIBRARY location of the libmlx => Llibmlx
@@ -47,12 +47,13 @@ fclean: clean
 
 re: fclean $(NAME)
 
-.PHONY: libft
-libft:
+run: all
+	./so_long ./game_levels/level01.ber
+
+makelibft:
 	make -C libft all
 
-.PHONY: libmlx
-mlx:
+makelibmlx:
 	make -C libmlx all
 
 ### References

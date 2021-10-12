@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/12 11:33:42 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/12 14:25:51 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,7 @@ int main (int argc, char **argv)
 		error = -1;// Call function error -- -1 error in args	
 	error = main_init_level(&mlx, argv);		
 	mlx.mlx = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx, mlx.img_height * 100, mlx.img_width * 100, "The funland");
+	mlx.win = mlx_new_window(mlx.mlx, mlx.img_width * 100, mlx.img_height * 100, "The funland");
 	
 	error = main_init_load_xpmfile(&mlx);
 	error = main_init_load_image(&mlx);

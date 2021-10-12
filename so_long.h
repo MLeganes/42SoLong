@@ -70,4 +70,6 @@ int player_move_s(t_mlx *mlx);
 int player_move_d(t_mlx *mlx);
 int player_move_w(t_mlx *mlx);
 
+void map_update_position(t_mlx *mlx, int hei, int wid);
+
 #endif
