@@ -6,20 +6,14 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/11 19:12:06 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/12 11:33:42 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //#include <so_long.>
 #include "so_long.h"
 
-int ft_resize_msg(void)
-{	
-	printf("The screen has new resolution");
-	return(1);
-}
-
-int ft_count_lines(t_mlx *mlx, char **argv)
+static int ft_count_lines(t_mlx *mlx, char **argv)
 {
 	int lines;
 	char *line;
@@ -35,9 +29,7 @@ int ft_count_lines(t_mlx *mlx, char **argv)
 	while(line)
 	{
 		free(line);
-		line = get_next_line(fd);
-		//if( line != NULL && line[0] != '\0' && len != (int)ft_strlen(line))
-		//	return (-9);
+		line = get_next_line(fd);		
 		lines++;
 	}
 	close(fd);
@@ -75,7 +67,7 @@ static int main_check_args(int args, char **argv)
 /*
  * Load the map.ber. Read the file and save the lines.
  */
-int		main_init_level(t_mlx *mlx, char **argv)
+static int		main_init_level(t_mlx *mlx, char **argv)
 {	
 	int		lines;
 	char 	*line;
@@ -103,7 +95,7 @@ int		main_init_level(t_mlx *mlx, char **argv)
 	return (1);
 }
 
-int main_init_load_xpmfile(t_mlx *mlx)
+static int main_init_load_xpmfile(t_mlx *mlx)
 {
 	mlx->relative_path_path = "imgs/Path.xpm";
 	mlx->pointer_path 	= mlx_xpm_file_to_image(mlx->mlx, mlx->relative_path_path , &mlx->x, &mlx->y);
@@ -116,7 +108,7 @@ int main_init_load_xpmfile(t_mlx *mlx)
 
 static int  main_init_load_image_base(t_mlx *mlx)
 {
-	//array
+	//array 
 	int height;
 	int w;
 	char aux;
@@ -137,7 +129,7 @@ static int  main_init_load_image_base(t_mlx *mlx)
 	return (0);
 }
 
-int main_init_load_image(t_mlx *mlx)
+static int main_init_load_image(t_mlx *mlx)
 {
 	//array
 	int height;
@@ -171,12 +163,12 @@ int main_init_load_image(t_mlx *mlx)
 	return (0);
 }
 
-int solong_player(int key, t_mlx *mlx)
-{
-	mlx->name = "so long";
-	printf("key press: %d in game: %s \n", key, mlx->name);	
-	return (1);	
-}
+// int solong_player(int key, t_mlx *mlx)
+// {
+// 	mlx->name = "so long";
+// 	printf("key press: %d in game: %s \n", key, mlx->name);	
+// 	return (1);	
+// }
 
 int main (int argc, char **argv)
 {
@@ -196,7 +188,7 @@ int main (int argc, char **argv)
 	error = main_init_load_xpmfile(&mlx);
 	error = main_init_load_image(&mlx);
 	//mlx_hook(mlx.win, )
-	mlx_hook(mlx.win, EVENT_KEY_PRESS, (MASK_KEY_PRESS), solong_event_keys, &mlx);
+	mlx_hook(mlx.win, EVENT_KEY_PRESS, (MASK_KEY_PRESS), key_events, &mlx);
 
 	mlx_loop(mlx.mlx);
 
