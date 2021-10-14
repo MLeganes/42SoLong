@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/12 14:25:51 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/14 17:08:00 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ static int ft_count_lines(t_mlx *mlx, char **argv)
 		line = get_next_line(fd);		
 		lines++;
 	}
-	close(fd);
+	close(fd);	
 	mlx->img_height = lines;
-	mlx->img_width = len; 
+	mlx->img_width = len -1;
 	return (1);
 }
 
@@ -87,7 +87,7 @@ static int		main_init_level(t_mlx *mlx, char **argv)
 	while(line)
 	{
 		mlx->map[lines] = line;
-		line = get_next_line(fd);
+		line = get_next_line(fd);				
 		lines++;
 	}	
 	if (close(fd) < 0)
@@ -99,10 +99,10 @@ static int main_init_load_xpmfile(t_mlx *mlx)
 {
 	mlx->relative_path_path = "imgs/Path.xpm";
 	mlx->pointer_path 	= mlx_xpm_file_to_image(mlx->mlx, mlx->relative_path_path , &mlx->x, &mlx->y);
-	mlx->pointer_wall 	= mlx_xpm_file_to_image(mlx->mlx, "./imgs/Wall.xpm", &mlx->x, &mlx->y);
-	mlx->pointer_player1 = mlx_xpm_file_to_image(mlx->mlx, "./imgs/Player1.xpm", &mlx->x, &mlx->y);
-	mlx->pointer_exit 	= mlx_xpm_file_to_image(mlx->mlx, "./imgs/Exit.xpm", &mlx->x, &mlx->y);
-	mlx->pointer_collect = mlx_xpm_file_to_image(mlx->mlx, "./imgs/Collect.xpm", &mlx->x, &mlx->y);
+	mlx->pointer_wall 	= mlx_xpm_file_to_image(mlx->mlx, "./imgs/wall.xpm", &mlx->x, &mlx->y);
+	mlx->pointer_player1 = mlx_xpm_file_to_image(mlx->mlx, "./imgs/Player111.xpm", &mlx->x, &mlx->y);
+	mlx->pointer_exit 	= mlx_xpm_file_to_image(mlx->mlx, "./imgs/exit111.xpm", &mlx->x, &mlx->y);
+	mlx->pointer_collect = mlx_xpm_file_to_image(mlx->mlx, "./imgs/bomb111.xpm", &mlx->x, &mlx->y);
 	return (1);
 }	
 
@@ -143,7 +143,7 @@ static int main_init_load_image(t_mlx *mlx)
 	while(height < mlx->img_height)
 	{
 		w = 0;
-		while (w < mlx->img_width)
+		while (w < mlx->img_width  )
 		{
 			aux = mlx->map[height][w];
 			if(mlx->map[height][w] == '0')
@@ -151,7 +151,11 @@ static int main_init_load_image(t_mlx *mlx)
 			if(mlx->map[height][w] == '1' )
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_wall,	w * 100, height * 100);
 			if(mlx->map[height][w] == 'P' )
+			{
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_player1,	w * 100, height * 100);
+				mlx->player1_horizontal = w;
+				mlx->player1_vertical = height;				
+			}
 			if(mlx->map[height][w] == 'C' )
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_collect,	w * 100, height * 100);
 			if(mlx->map[height][w] == 'E' )
