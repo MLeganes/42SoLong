@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/14 17:08:00 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/19 11:41:06 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,9 @@ static int main_init_load_xpmfile(t_mlx *mlx)
 	mlx->relative_path_path = "imgs/Path.xpm";
 	mlx->pointer_path 	= mlx_xpm_file_to_image(mlx->mlx, mlx->relative_path_path , &mlx->x, &mlx->y);
 	mlx->pointer_wall 	= mlx_xpm_file_to_image(mlx->mlx, "./imgs/wall.xpm", &mlx->x, &mlx->y);
-	mlx->pointer_player1 = mlx_xpm_file_to_image(mlx->mlx, "./imgs/Player111.xpm", &mlx->x, &mlx->y);
-	mlx->pointer_exit 	= mlx_xpm_file_to_image(mlx->mlx, "./imgs/exit111.xpm", &mlx->x, &mlx->y);
-	mlx->pointer_collect = mlx_xpm_file_to_image(mlx->mlx, "./imgs/bomb111.xpm", &mlx->x, &mlx->y);
+	mlx->pointer_player1 = mlx_xpm_file_to_image(mlx->mlx, "./imgs/Player11.xpm", &mlx->x, &mlx->y);
+	mlx->pointer_exit 	= mlx_xpm_file_to_image(mlx->mlx, "./imgs/exit.xpm", &mlx->x, &mlx->y);
+	mlx->pointer_collect = mlx_xpm_file_to_image(mlx->mlx, "./imgs/mushrun.xpm", &mlx->x, &mlx->y);
 	return (1);
 }	
 
@@ -193,6 +193,8 @@ int main (int argc, char **argv)
 	error = main_init_load_image(&mlx);
 	//mlx_hook(mlx.win, )
 	mlx_hook(mlx.win, EVENT_KEY_PRESS, (MASK_KEY_PRESS), key_events, &mlx);
+	mlx_hook(mlx.win, EVENT_KEY_DESTROYNOTIFY, (MASK_KEY_STRUCTURENOTIFY), exit_game, &mlx);
+	
 
 	mlx_loop(mlx.mlx);
 

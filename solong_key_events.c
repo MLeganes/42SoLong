@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 14:31:29 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/14 14:44:23 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/19 10:45:33 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ int key_events(int key, t_mlx *mlx)
 	}	
 	if(key == 13 || key == 126)
 	{
-		player_move_w(mlx);		
+		player_move_w(mlx);
 	}	
 	if(key == 53)
 	{
 		// close everzthign
-		exit(0);
+		exit (0);
 	}
 	return (1);
 }

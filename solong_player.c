@@ -6,62 +6,97 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 17:44:03 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/14 17:22:06 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/19 11:26:54 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //include <so_long.h>
 #include "so_long.h"
 
-int player_move_a(t_mlx *mlx)
+int	player_move_a(t_mlx *mlx)
 {
-	printf("Move A heig: %d wid:%d  ", mlx->img_height, mlx->img_width);
-	return (0);
-}
-int player_move_s(t_mlx *mlx)
-{
-	printf("Move S heig: %d wid:%d  ", mlx->img_height, mlx->img_width);
-	return (0);
-}
-int player_move_d(t_mlx *mlx)
-{
-	printf("Move D heig: %d wid:%d  ", mlx->img_height, mlx->img_width);
-	return (0);
-}
-int player_move_w(t_mlx *mlx)
-{
-	int hor;	
-	int ver;	
-		
-	hor = mlx->player1_horizontal;	
-	ver = mlx->player1_vertical;	
-	
-	printf("Move W heig: %d wid:%d  ", mlx->img_height, mlx->img_width);
-	if (mlx->map[ver - 1 ][hor] == 'C')
+	int	new_x;
+	int	new_y;
+
+	new_y = mlx->player1_vertical;
+	new_x = (mlx->player1_horizontal) - 1;
+	if (mlx->map[new_y][new_x] == 'C')
 	{
-		//	collect
-		
 	}
-	if (mlx->map[ver - 1][hor] == '0')
+	if (mlx->map[new_y][new_x] == '0')
 	{
-		//next is path, do something
-		//mlx->player1_vertical--;
-		// update player position in map
-			// vertical -- with
-			// hori     -- hei
-					
-		mlx->map[hor][ver] = '0';
-		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_path,	ver * 100, hor * 100);		
-		mlx->map[hor][ver - 1] = 'P';
-		// update player position
-		mlx->player1_horizontal = hor;
-		mlx->player1_vertical = ver -1;		
-		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_player1, (ver-1) * 100, hor * 100);	
-			
+		map_update_path(mlx, mlx->player1_horizontal, mlx->player1_vertical);
+		map_update_player(mlx, new_x, new_y);
 	}
-	if (mlx->map[ver - 1][hor] == 'E')
+	if (mlx->map[new_y][new_x] == 'E')
 	{
-		//Exit, do something
+		exit_game();
+	}
+	return (0);
+}
+
+int	player_move_s(t_mlx *mlx)
+{	
+	int	new_x;
+	int	new_y;
+
+	new_y = (mlx->player1_vertical) + 1;
+	new_x = mlx->player1_horizontal;
+	if (mlx->map[new_y][new_x] == 'C')
+	{
+	}
+	if (mlx->map[new_y][new_x] == '0')
+	{
+		map_update_path(mlx, mlx->player1_horizontal, mlx->player1_vertical);
+		map_update_player(mlx, new_x, new_y);
+	}
+	if (mlx->map[new_y][new_x] == 'E')
+	{
+		exit_game();
+	}
+	return (0);
+}
+
+int	player_move_d(t_mlx *mlx)
+{
+	int	new_x;	
+	int	new_y;	
+
+	new_y = mlx->player1_vertical;
+	new_x = (mlx->player1_horizontal) + 1;
+	if (mlx->map[new_y][new_x] == 'C')
+	{
+	}
+	else if (mlx->map[new_y][new_x] == '0')
+	{
+		map_update_path(mlx, mlx->player1_horizontal, mlx->player1_vertical);
+		map_update_player(mlx, new_x, new_y);
+	}
+	else if (mlx->map[new_y][new_x] == 'E')
+	{
+		exit_game();
+	}
+	return (0);
+}
+
+int	player_move_w(t_mlx *mlx)
+{
+	int	new_x;
+	int	new_y;
+
+	new_y = (mlx->player1_vertical) - 1;
+	new_x = mlx->player1_horizontal;
+	if (mlx->map[new_y][new_x] == 'C')
+	{
+	}
+	if (mlx->map[new_y][new_x] == '0')
+	{
+		map_update_path(mlx, mlx->player1_horizontal, mlx->player1_vertical);
+		map_update_player(mlx, new_x, new_y);
+	}
+	if (mlx->map[new_y][new_x] == 'E')
+	{
+		exit_game();
 	}
 	return (0);
 }

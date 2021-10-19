@@ -22,10 +22,13 @@
  Defines for the width and height of your window. I suggest you to do the same so
  you can change easily the size of your window later if needed.
 */
+# define EXIT_GAME 0
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 # define EVENT_KEY_PRESS 2
+# define EVENT_KEY_DESTROYNOTIFY 17
 # define MASK_KEY_PRESS 1L<<2
+# define MASK_KEY_STRUCTURENOTIFY 1L<<17
 
 typedef struct	s_mlx
 {
@@ -36,7 +39,6 @@ typedef struct	s_mlx
 
 	int			player1_horizontal;
 	int			player1_vertical;
-
 	
 	int			endian;
 	void		*img;
@@ -70,6 +72,10 @@ int player_move_s(t_mlx *mlx);
 int player_move_d(t_mlx *mlx);
 int player_move_w(t_mlx *mlx);
 
-void map_update_position(t_mlx *mlx, int hei, int wid);
+void map_update_position(t_mlx *mlx, int x, int y);
+void map_update_path(t_mlx *mlx, int x, int y);
+void map_update_player(t_mlx *mlx, int x, int y);
+
+int exit_game();
 
 #endif
