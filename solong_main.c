@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/19 11:41:06 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/19 14:44:09 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,12 @@ static int		main_init_level(t_mlx *mlx, char **argv)
 
 static int main_init_load_xpmfile(t_mlx *mlx)
 {
-	mlx->relative_path_path = "imgs/Path.xpm";
-	mlx->pointer_path 	= mlx_xpm_file_to_image(mlx->mlx, mlx->relative_path_path , &mlx->x, &mlx->y);
+	mlx->pointer_path 	= mlx_xpm_file_to_image(mlx->mlx, "./imgs/path.xpm" , &mlx->x, &mlx->y);
 	mlx->pointer_wall 	= mlx_xpm_file_to_image(mlx->mlx, "./imgs/wall.xpm", &mlx->x, &mlx->y);
-	mlx->pointer_player1 = mlx_xpm_file_to_image(mlx->mlx, "./imgs/Player11.xpm", &mlx->x, &mlx->y);
+	mlx->pointer_player1 = mlx_xpm_file_to_image(mlx->mlx, "./imgs/player.xpm", &mlx->x, &mlx->y);
 	mlx->pointer_exit 	= mlx_xpm_file_to_image(mlx->mlx, "./imgs/exit.xpm", &mlx->x, &mlx->y);
-	mlx->pointer_collect = mlx_xpm_file_to_image(mlx->mlx, "./imgs/mushrun.xpm", &mlx->x, &mlx->y);
+	mlx->pointer_collect = mlx_xpm_file_to_image(mlx->mlx, "./imgs/collect.xpm", &mlx->x, &mlx->y);
+	mlx->pointer_bomb = mlx_xpm_file_to_image(mlx->mlx, "./imgs/bomb.xpm", &mlx->x, &mlx->y);
 	return (1);
 }	
 
@@ -157,7 +157,11 @@ static int main_init_load_image(t_mlx *mlx)
 				mlx->player1_vertical = height;				
 			}
 			if(mlx->map[height][w] == 'C' )
+			{
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_collect,	w * 100, height * 100);
+				collectible_increase(mlx);
+				
+			}
 			if(mlx->map[height][w] == 'E' )
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_exit,	w * 100, height * 100);
 			w++;
