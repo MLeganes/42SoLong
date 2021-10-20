@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/19 14:44:09 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:50:30 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,12 @@ static int main_check_args(int args, char **argv)
 	int		error;
 	char	*ret;
 	char 	aux[255];
-	int i;
+	int		i;
 	
 	error = -1;
 	if( args == 2 )
 	{
-		ret = ft_strnstr(argv[1], ".ber", ft_strlen(argv[1]));
-		
+		ret = ft_strnstr(argv[1], ".ber", ft_strlen(argv[1]));		
 		i = 0;
 		while(argv[1][i])
 		{
@@ -67,7 +66,7 @@ static int main_check_args(int args, char **argv)
 /*
  * Load the map.ber. Read the file and save the lines.
  */
-static int		main_init_level(t_mlx *mlx, char **argv)
+static int		main_load_map(t_mlx *mlx, char **argv)
 {	
 	int		lines;
 	char 	*line;
@@ -121,7 +120,7 @@ static int  main_init_load_image_base(t_mlx *mlx)
 		while (w < mlx->img_width)
 		{
 			aux = mlx->map[height][w];
-			mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_path,	w * 100, height * 100);
+			mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_path,	w * ZOOM, height * ZOOM);
 			w++;
 		}
 		height++;
@@ -147,23 +146,23 @@ static int main_init_load_image(t_mlx *mlx)
 		{
 			aux = mlx->map[height][w];
 			if(mlx->map[height][w] == '0')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_path,	w * 100, height * 100);
+				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_path,	w * ZOOM, height * ZOOM);
 			if(mlx->map[height][w] == '1' )
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_wall,	w * 100, height * 100);
+				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_wall,	w * ZOOM, height * ZOOM);
 			if(mlx->map[height][w] == 'P' )
 			{
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_player1,	w * 100, height * 100);
+				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_player1,	w * ZOOM, height * ZOOM);
 				mlx->player1_horizontal = w;
 				mlx->player1_vertical = height;				
 			}
 			if(mlx->map[height][w] == 'C' )
 			{
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_collect,	w * 100, height * 100);
+				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_collect,	w * ZOOM, height * ZOOM);
 				collectible_increase(mlx);
 				
 			}
 			if(mlx->map[height][w] == 'E' )
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_exit,	w * 100, height * 100);
+				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_exit,	w * ZOOM, height * ZOOM);
 			w++;
 		}
 		height++;
@@ -171,27 +170,19 @@ static int main_init_load_image(t_mlx *mlx)
 	return (0);
 }
 
-// int solong_player(int key, t_mlx *mlx)
-// {
-// 	mlx->name = "so long";
-// 	printf("key press: %d in game: %s \n", key, mlx->name);	
-// 	return (1);	
-// }
-
 int main (int argc, char **argv)
 {
 	//https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
-	t_mlx	mlx; //Here I first create my struct that will contains all the "MLX stuff"
-
-	// new variableds
+	t_mlx	mlx;
 	int		error;
 
 	error = main_check_args(argc, argv);
 	if ( error <= 0)
 		error = -1;// Call function error -- -1 error in args	
-	error = main_init_level(&mlx, argv);		
+	error = main_load_map(&mlx, argv);
+	map_check(&mlx);	
 	mlx.mlx = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx, mlx.img_width * 100, mlx.img_height * 100, "The funland");
+	mlx.win = mlx_new_window(mlx.mlx, mlx.img_width * ZOOM, mlx.img_height * ZOOM, "The funland");
 	
 	error = main_init_load_xpmfile(&mlx);
 	error = main_init_load_image(&mlx);

@@ -3,19 +3,19 @@
 
 void map_update_path(t_mlx *mlx, int x, int y)
 {
-	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_path,	x * 100, y * 100);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_path,	x * ZOOM, y * ZOOM);
 	mlx->map[y][x] = '0';	
 }
 
 void map_update_player(t_mlx *mlx, int x, int y)
 {
-	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_player1, x * 100, y * 100);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_player1, x * ZOOM, y * ZOOM);
 	mlx->map[y][x] = 'P';
 	mlx->player1_horizontal = x;
 	mlx->player1_vertical = y;
 }
 
-int map_check_ones(char *s)
+static int map_check_wall(char *s)
 {
 	int i;
 
@@ -23,37 +23,38 @@ int map_check_ones(char *s)
 	while (s[i] != '\n' || s[i] != '\0')
 	{
 		if ( s[i] != '1')
-			return (-1);
+			return (-1);		
+		i++;
 	}
 	return (1);
 }
 
-int map_check_otherlines(char *s)
-{
-	int i;
-	int len;
+// int map_check_otherlines(char *s)
+// {
+// 	int i;
+// 	int len;
 
-	len = strlen(s);
+// 	len = strlen(s);
 
-	i = 0;
-	while (s[i] != '\n' || s[i] != '\0')
-	{
-		if (s[0] != '1' || s[len] != '1')
-			retun (-1);
-		else
-		{
-			if (s[i] == '0')
-				continue;
-			if (s[i] == 'P')
-				//count player ++
-			if (s[i] == 'E')
-				//counter exit ++
-			if (s[i] == 'C')
-				// count collecti ++
-		}
-	}
-	return (1);
-}
+// 	i = 0;
+// 	while (s[i] != '\n' || s[i] != '\0')
+// 	{
+// 		if (s[0] != '1' || s[len] != '1')
+// 			retun (-1);
+// 		else
+// 		{
+// 			if (s[i] == '0')
+// 				continue;
+// 			if (s[i] == 'P')
+// 				//count player ++
+// 			if (s[i] == 'E')
+// 				//counter exit ++
+// 			if (s[i] == 'C')
+// 				// count collecti ++
+// 		}
+// 	}
+// 	return (1);
+// }
 
 int map_check(t_mlx *mlx)
 {
@@ -70,12 +71,12 @@ int map_check(t_mlx *mlx)
 		if( height == 0 || height == mlx->img_height)
 		{
 			if (map_check_wall(line))
-				return (-1);			
-		}
-		else{
-			if (map_check_midline(line))
 				return (-1);
-		}		
+		}
+		// else{
+		// 	if (map_check_midline(line))
+		// 		return (-1);
+		// }		
 		height++;
 	}
 	return (1);

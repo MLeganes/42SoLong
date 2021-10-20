@@ -25,6 +25,7 @@
 # define EXIT_GAME 0
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
+# define ZOOM 100
 # define EVENT_KEY_PRESS 2
 # define EVENT_KEY_DESTROYNOTIFY 17
 # define MASK_KEY_PRESS 1L<<2
@@ -79,6 +80,7 @@ int player_move_d(t_mlx *mlx);
 int player_move_w(t_mlx *mlx);
 void player_update(t_mlx *mlx);
 
+int map_check(t_mlx *mlx);
 void map_update_path(t_mlx *mlx, int x, int y);
 void map_update_player(t_mlx *mlx, int x, int y);
 
