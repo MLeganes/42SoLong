@@ -6,7 +6,7 @@
 #    By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 11:24:29 by amorcill          #+#    #+#              #
-#    Updated: 2021/10/19 16:07:30 by amorcill         ###   ########.fr        #
+#    Updated: 2021/10/21 18:31:59 by amorcill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS	= solong_main.c \
 		  solong_player.c \
 		  solong_exit.c \
 		  solong_collectible.c \
+		  solong_error.c \
 		  
 
 all: $(NAME)
@@ -57,7 +58,7 @@ fclean: clean
 re: fclean $(NAME)
 
 run:
-	./so_long ./game_levels/level01.ber
+	./so_long ./game_levels/level02.ber
 
 makelibft:
 	make -C libft all

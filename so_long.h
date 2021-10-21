@@ -37,13 +37,16 @@ typedef struct	s_mlx
 	void		*mlx;
 	void		*win;
 	char		**map;
+	int			map_players;
+	int			map_collectibles;
+	int			map_exit;
+	//int			collectibles;
 
 	int			player1_horizontal;
 	int			player1_new_x;
 	int			player1_vertical;
 	int			player1_new_y;
 
-	int			collectibles;
 	
 	int			endian;
 	void		*img;
@@ -80,7 +83,7 @@ int player_move_d(t_mlx *mlx);
 int player_move_w(t_mlx *mlx);
 void player_update(t_mlx *mlx);
 
-int map_check(t_mlx *mlx);
+void map_check(t_mlx *mlx);
 void map_update_path(t_mlx *mlx, int x, int y);
 void map_update_player(t_mlx *mlx, int x, int y);
 
@@ -88,6 +91,7 @@ void collectible_increase(t_mlx *mlx);
 int collectible_check(t_mlx *mlx);
 void collectible_decrease(t_mlx *mlx);
 
+void error_print_exit(char *error_msg);
 int exit_game();
 
 #endif

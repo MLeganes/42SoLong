@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/20 17:50:30 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/21 20:07:07 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static int		main_load_map(t_mlx *mlx, char **argv)
 	int		lines;
 	char 	*line;
 	int 	fd;
+	int		aux;
 
 	// malloc the pointers to the array
 	ft_count_lines(mlx, argv);
@@ -85,6 +86,11 @@ static int		main_load_map(t_mlx *mlx, char **argv)
 	lines = 0;
 	while(line)
 	{
+		if ( ft_strrchr(line, '\n'))
+		{	
+			aux = ft_strnchr(line, '\n');
+			line[ aux] = '\0';			
+		}
 		mlx->map[lines] = line;
 		line = get_next_line(fd);				
 		lines++;

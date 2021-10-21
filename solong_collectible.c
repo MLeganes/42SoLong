@@ -2,16 +2,16 @@
 
 void collectible_increase(t_mlx *mlx)
 {
-	mlx->collectibles++;
+	mlx->map_collectibles++;
 }
 
 int collectible_check(t_mlx *mlx)
 {
-	if (mlx->collectibles == 0)
+	if (mlx->map_collectibles == 0)
 		return (0);
 	return (1); 
 }
 void collectible_decrease(t_mlx *mlx)
 {
-	mlx->collectibles--;
+	mlx->map_collectibles--;
 }

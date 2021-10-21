@@ -15,103 +15,83 @@ void map_update_player(t_mlx *mlx, int x, int y)
 	mlx->player1_vertical = y;
 }
 
-static int map_check_wall(char *s)
+static void map_check_wall(char *s)
 {
 	int i;
 
 	i = 0;
-	while (s[i] != '\n' || s[i] != '\0')
+	while (s[i] != '\n')
 	{
 		if ( s[i] != '1')
-			return (-1);		
+			error_print_exit("[map error] Map no well formed. Problems with the walls!!!");		
 		i++;
 	}
-	return (1);
 }
 
-// int map_check_otherlines(char *s)
-// {
-// 	int i;
-// 	int len;
+void	map_check_midline(t_mlx *mlx, char *s)
+{
+	int i;
+	int len;
 
-// 	len = strlen(s);
+	len = strlen(s);
+	i = 0;
+	if (s[0] != '1' || s[len] != '1')
+		error_print_exit("[map error] Map containt invalid entry. Problems with the walls!!!");
+	while (s[i] != '\n')
+	{
+		if ( s[i] != '1' && s[i] != '0' && s[i] != 'P' && s[i] != 'E' && s[i] != 'C')
+			error_print_exit("[map error] Map containt invalid entry!!!");
+		else
+		{		
+			if (s[i] == 'P')
+				mlx->map_players++;
+			if (s[i] == 'E')
+				mlx->map_exit++;
+			if (s[i] == 'C')
+				collectible_increase(mlx);			
+		}
+		i++;
+	}
+}
 
-// 	i = 0;
-// 	while (s[i] != '\n' || s[i] != '\0')
-// 	{
-// 		if (s[0] != '1' || s[len] != '1')
-// 			retun (-1);
-// 		else
-// 		{
-// 			if (s[i] == '0')
-// 				continue;
-// 			if (s[i] == 'P')
-// 				//count player ++
-// 			if (s[i] == 'E')
-// 				//counter exit ++
-// 			if (s[i] == 'C')
-// 				// count collecti ++
-// 		}
-// 	}
-// 	return (1);
-// }
+static void map_check_linelength(t_mlx *mlx)
+{
+	int		i;
+	size_t	len;
+	char 	*line;
+	size_t	auxlen;
+	
+	if (mlx->img_width == mlx->img_height)
+		error_print_exit("[map error] Map is square, no valid!!!");
+	i = 1;
+	len = ft_strlen(mlx->map[0]);
+	ft_str
+	while (mlx->map[i])
+	{
+		line = mlx->map[i];
+		auxlen = ft_strlen(mlx->map[i]);
+		if (len != auxlen )
+			error_print_exit("[map error] Map containt invalid entry!!!");
+		i++;	
+	}	
+}
 
-int map_check(t_mlx *mlx)
+void map_check(t_mlx *mlx)
 {
 	int		height;
 	char	*line;
 	
-	if (mlx->img_width == mlx->img_height)
-		return (0);
+	map_check_linelength(mlx);
+		
 	height = 0;
 	line = NULL;
 	while(height < mlx->img_height)
 	{
-		line = mlx->map[height];			
+		line = mlx->map[height];
 		if( height == 0 || height == mlx->img_height)
-		{
-			if (map_check_wall(line))
-				return (-1);
-		}
-		// else{
-		// 	if (map_check_midline(line))
-		// 		return (-1);
-		// }		
+			map_check_wall(line);
+		else
+			map_check_midline(mlx, line);
 		height++;
 	}
-	return (1);
 }
-
-
-
-
-
-
-	   /*
-		*
-		*
-		
-			aux = mlx->map[height][width];
-			if(mlx->map[height][w] == '0')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_path,	width* 100, height * 100);
-			if(mlx->map[height][w] == '1' )
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_wall,	width* 100, height * 100);
-			if(mlx->map[height][w] == 'P' )
-			{
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_player1,	width* 100, height * 100);
-				mlx->player1_horizontal = w;
-				mlx->player1_vertical = height;				
-			}
-			if(mlx->map[height][w] == 'C' )
-			{
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_collect,	width* 100, height * 100);
-				collectible_increase(mlx);
-				
-			}
-			if(mlx->map[height][w] == 'E' )
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_exit,	width* 100, height * 100);
-			width++;
-		}
-		height++;
-
-		***/
