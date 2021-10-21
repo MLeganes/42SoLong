@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solong_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
+/*   By: x250 <x250@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/21 20:07:07 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/22 00:05:12 by x250             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,22 @@ static int main_check_args(int args, char **argv)
 	return (error);
 }
 
+static void ft_remove_eol(char *s)
+{
+	int i;
+	
+	i =0;
+	while(s[i])
+	{
+		if( s[i] == '\n')
+		{
+			s[i] = '\0';
+			return ;	
+		}
+		i++;
+	}
+}
+
 /*
  * Load the map.ber. Read the file and save the lines.
  */
@@ -86,11 +102,7 @@ static int		main_load_map(t_mlx *mlx, char **argv)
 	lines = 0;
 	while(line)
 	{
-		if ( ft_strrchr(line, '\n'))
-		{	
-			aux = ft_strnchr(line, '\n');
-			line[ aux] = '\0';			
-		}
+		ft_remove_eol(line);
 		mlx->map[lines] = line;
 		line = get_next_line(fd);				
 		lines++;
