@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solong_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: x250 <x250@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/22 00:05:12 by x250             ###   ########.fr       */
+/*   Updated: 2021/10/22 13:53:53 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,25 @@ static int ft_count_lines(t_mlx *mlx, char **argv)
 	char *line;
 	int len;
 	int fd;
-	
+
 	lines = 0;
 	fd = open(argv[1], O_RDONLY);
 	if( fd <= 0)
 		return (-2);
 	line = get_next_line(fd);
+	ft_remove_eol(line);	
 	len = ft_strlen(line);
 	while(line)
 	{
 		free(line);
-		line = get_next_line(fd);		
+		line = get_next_line(fd);				
 		lines++;
 	}
 	close(fd);	
 	mlx->img_height = lines;
-	mlx->img_width = len -1;
+	mlx->map_height = lines;
+	mlx->img_width = len;
+	mlx->map_width = len;
 	return (1);
 }
 
@@ -63,36 +66,20 @@ static int main_check_args(int args, char **argv)
 	return (error);
 }
 
-static void ft_remove_eol(char *s)
-{
-	int i;
-	
-	i =0;
-	while(s[i])
-	{
-		if( s[i] == '\n')
-		{
-			s[i] = '\0';
-			return ;	
-		}
-		i++;
-	}
-}
-
 /*
  * Load the map.ber. Read the file and save the lines.
  */
+
 static int		main_load_map(t_mlx *mlx, char **argv)
 {	
 	int		lines;
 	char 	*line;
 	int 	fd;
-	int		aux;
-
+	
 	// malloc the pointers to the array
 	ft_count_lines(mlx, argv);
 	lines = mlx->img_height;
-	mlx->map = (char **)malloc( lines * (sizeof(char *)));
+	mlx->map = (char **)malloc( lines * (sizeof(char *) + 1));
 	if(mlx->map == NULL)
 		return (-8);
 	fd = open(argv[1], O_RDONLY);
@@ -104,9 +91,10 @@ static int		main_load_map(t_mlx *mlx, char **argv)
 	{
 		ft_remove_eol(line);
 		mlx->map[lines] = line;
-		line = get_next_line(fd);				
+		line = get_next_line(fd);
 		lines++;
-	}	
+	}
+	mlx->map[lines] = NULL;
 	if (close(fd) < 0)
 		return(-4);		
 	return (1);
@@ -194,6 +182,7 @@ int main (int argc, char **argv)
 	t_mlx	mlx;
 	int		error;
 
+	main_init_mlx(&mlx);
 	error = main_check_args(argc, argv);
 	if ( error <= 0)
 		error = -1;// Call function error -- -1 error in args	
