@@ -13,24 +13,17 @@
 
 ### [info minilibx basic]
 	https://harm-smits.github.io/42docs/libs/minilibx 
+	https://github.com/qst0/ft_libgfx#graphics-branch-link-dump
 	https://github.com/keuhdall/images_example 
 
 ### [git hub minilibx]
 	https://github.com/qst0/ft_libgfx
 
-#### To Do
-	[code]
+### [Code]
 	https://github.com/AmberLawr/so_long 
-
-	[mario in c]
 	https://github.com/agavrel/sm64 		
 
-	[To Read]
-	https://github.com/qst0/ft_libgfx#graphics-branch-link-dump
-
-
-
-[mlx]
+### [Others links]
 - https://stackoverflow.com/c/42network/questions/531		
 
   
@@ -40,3 +33,7 @@
 - https://github.com/agnusmaximus/Mario-World
 - https://convertio.co/png-xpm/
 - https://makefiletutorial.com/
+
+
+### [Pacman]
+https://github.com/TheDigitalBug/pacman

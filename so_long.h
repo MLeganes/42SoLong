@@ -40,6 +40,8 @@ typedef struct	s_mlx
 	int			map_players;
 	int			map_collectibles;
 	int			map_exit;
+	int			map_height;
+	int			map_width;
 	//int			collectibles;
 
 	int			player1_horizontal;
@@ -74,24 +76,42 @@ typedef struct	s_mlx
 	int			y;
 }				t_mlx;
 
-
+/*
+ * Solong init
+ */
+void main_init_mlx(t_mlx *mlx);
+/*
+ * Solong events
+ */
 int key_events(int key, t_mlx *mlx);
-
+/*
+ * Solong player
+ */
 int player_move_a(t_mlx *mlx);
 int player_move_s(t_mlx *mlx);
 int player_move_d(t_mlx *mlx);
 int player_move_w(t_mlx *mlx);
 void player_update(t_mlx *mlx);
-
+/*
+ * Solong map
+ */
 void map_check(t_mlx *mlx);
 void map_update_path(t_mlx *mlx, int x, int y);
 void map_update_player(t_mlx *mlx, int x, int y);
-
+/*
+ * Solong collectible 
+ */
 void collectible_increase(t_mlx *mlx);
 int collectible_check(t_mlx *mlx);
 void collectible_decrease(t_mlx *mlx);
-
+/*
+ * Solong error 
+ */
 void error_print_exit(char *error_msg);
 int exit_game();
+/*
+ * Solong utils
+ */
+void ft_remove_eol(char *s);
 
 #endif

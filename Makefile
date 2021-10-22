@@ -6,7 +6,7 @@
 #    By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 11:24:29 by amorcill          #+#    #+#              #
-#    Updated: 2021/10/21 18:31:59 by amorcill         ###   ########.fr        #
+#    Updated: 2021/10/22 13:56:24 by amorcill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,12 +15,15 @@ CC		= gcc
 FLAGS	= -Wall -Wextra -Werror
 OBJS	= $(patsubst %.c, %.o, $(SRCS))
 SRCS	= solong_main.c \
+		  solong_init.c \
 		  solong_key_events.c \
 		  solong_map.c \
 		  solong_player.c \
 		  solong_exit.c \
 		  solong_collectible.c \
 		  solong_error.c \
+		  solong_utils.c \
+		  
 		  
 
 all: $(NAME)
