@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/22 13:53:53 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/25 19:58:04 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,8 @@ static int ft_count_lines(t_mlx *mlx, char **argv)
 		lines++;
 	}
 	close(fd);	
-	mlx->img_height = lines;
-	mlx->map_height = lines;
-	mlx->img_width = len;
+	
+	mlx->map_height = lines;	
 	mlx->map_width = len;
 	return (1);
 }
@@ -77,9 +76,9 @@ static int		main_load_map(t_mlx *mlx, char **argv)
 	int 	fd;
 	
 	// malloc the pointers to the array
-	ft_count_lines(mlx, argv);
-	lines = mlx->img_height;
-	mlx->map = (char **)malloc( lines * (sizeof(char *) + 1));
+	ft_count_lines(mlx, argv);	
+	lines = mlx->map_height;
+	mlx->map = (char **)malloc((lines +1) * (sizeof(char *)));	
 	if(mlx->map == NULL)
 		return (-8);
 	fd = open(argv[1], O_RDONLY);
@@ -120,10 +119,10 @@ static int  main_init_load_image_base(t_mlx *mlx)
 	
 	height = 0;
 	w = 0;
-	while(height < mlx->img_height)
+	while(height < mlx->map_height)
 	{
 		w = 0;
-		while (w < mlx->img_width)
+		while (w < mlx->map_width)
 		{
 			aux = mlx->map[height][w];
 			mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_path,	w * ZOOM, height * ZOOM);
@@ -145,10 +144,10 @@ static int main_init_load_image(t_mlx *mlx)
 	
 	height = 0;
 	w = 0;
-	while(height < mlx->img_height)
+	while(height < mlx->map_height)
 	{
 		w = 0;
-		while (w < mlx->img_width  )
+		while (w < mlx->map_width  )
 		{
 			aux = mlx->map[height][w];
 			if(mlx->map[height][w] == '0')
@@ -189,16 +188,13 @@ int main (int argc, char **argv)
 	error = main_load_map(&mlx, argv);
 	map_check(&mlx);	
 	mlx.mlx = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx, mlx.img_width * ZOOM, mlx.img_height * ZOOM, "The funland");
+	mlx.win = mlx_new_window(mlx.mlx, mlx.map_width * ZOOM, mlx.map_height * ZOOM, "The funland");
 	
 	error = main_init_load_xpmfile(&mlx);
 	error = main_init_load_image(&mlx);
 	//mlx_hook(mlx.win, )
 	mlx_hook(mlx.win, EVENT_KEY_PRESS, (MASK_KEY_PRESS), key_events, &mlx);
 	mlx_hook(mlx.win, EVENT_KEY_DESTROYNOTIFY, (MASK_KEY_STRUCTURENOTIFY), exit_game, &mlx);
-	
-
 	mlx_loop(mlx.mlx);
-
-	return(0);
+	return(EXIT_SUCCESS);
 }	

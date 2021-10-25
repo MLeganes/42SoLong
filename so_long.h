@@ -11,11 +11,7 @@
 
 // To change with my ftlib
 #include <stdio.h>
-
 //https://github.com/keuhdall/images_example
-
-
-
 
 
 /*
@@ -42,21 +38,17 @@ typedef struct	s_mlx
 	int			map_exit;
 	int			map_height;
 	int			map_width;
-	//int			collectibles;
 
 	int			player1_horizontal;
 	int			player1_new_x;
 	int			player1_vertical;
 	int			player1_new_y;
-
 	
 	int			endian;
 	void		*img;
 	int			*img_data; 
 	int			img_size_l;
 	int			img_bpp;
-	int			img_width;
-	int			img_height;
 
 	void		*pointer_path;
 	void		*pointer_wall;
@@ -64,13 +56,6 @@ typedef struct	s_mlx
 	void		*pointer_exit;
 	void		*pointer_collect;
 	void		*pointer_bomb;
-
-	// char		*relative_path_path;
-	// char		*relative_path_wall;
-	// char		*relative_path_player1;
-	// char		*relative_path_exit;
-	// char		*relative_path_collect;
-	// char		*relative_path_bomb;
 
 	int			x;
 	int			y;
