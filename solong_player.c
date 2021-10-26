@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 17:44:03 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/19 17:12:13 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/26 12:42:06 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ void player_update(t_mlx *mlx)
 {
 	int		new_xy[2];	
 	
+//aqui!!!!!!!
+	
 	new_xy[0] = mlx->player1_new_x;
 	new_xy[1] = mlx->player1_new_y;	
 	if (mlx->map[new_xy[1]][new_xy[0]] == '0' || mlx->map[new_xy[1]][new_xy[0]] == 'C')
@@ -104,9 +106,7 @@ void player_update(t_mlx *mlx)
 	}
 	if (mlx->map[new_xy[1]][new_xy[0]] == 'E')
 	{
-		if ( collectible_check(mlx) == 0)
-			exit_game();
-	}
-	//mlx->player1_new_x = 0;
-	//mlx->player1_new_y = 0;
+		if (collectible_check(mlx) == 0)
+			//exit_game();
+	}	
 }
