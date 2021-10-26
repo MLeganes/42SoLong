@@ -3,42 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   solong_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
+/*   By: x250 <x250@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/25 19:58:04 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/26 10:15:55 by x250             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //#include <so_long.>
 #include "so_long.h"
 
-static int ft_count_lines(t_mlx *mlx, char **argv)
-{
-	int lines;
-	char *line;
-	int len;
-	int fd;
 
-	lines = 0;
-	fd = open(argv[1], O_RDONLY);
-	if( fd <= 0)
-		return (-2);
-	line = get_next_line(fd);
-	ft_remove_eol(line);	
-	len = ft_strlen(line);
-	while(line)
-	{
-		free(line);
-		line = get_next_line(fd);				
-		lines++;
-	}
-	close(fd);	
-	
-	mlx->map_height = lines;	
-	mlx->map_width = len;
-	return (1);
-}
 
 static int main_check_args(int args, char **argv)
 {
