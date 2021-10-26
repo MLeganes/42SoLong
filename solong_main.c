@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   solong_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: x250 <x250@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/26 10:15:55 by x250             ###   ########.fr       */
+/*   Updated: 2021/10/26 13:44:26 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <so_long.>
 #include "so_long.h"
-
-
 
 static int main_check_args(int args, char **argv)
 {
@@ -76,12 +73,19 @@ static int		main_load_map(t_mlx *mlx, char **argv)
 
 static int main_init_load_xpmfile(t_mlx *mlx)
 {
-	mlx->pointer_path 	= mlx_xpm_file_to_image(mlx->mlx, "./imgs/path.xpm" , &mlx->x, &mlx->y);
-	mlx->pointer_wall 	= mlx_xpm_file_to_image(mlx->mlx, "./imgs/wall.xpm", &mlx->x, &mlx->y);
-	mlx->pointer_player1 = mlx_xpm_file_to_image(mlx->mlx, "./imgs/player.xpm", &mlx->x, &mlx->y);
-	mlx->pointer_exit 	= mlx_xpm_file_to_image(mlx->mlx, "./imgs/exit.xpm", &mlx->x, &mlx->y);
-	mlx->pointer_collect = mlx_xpm_file_to_image(mlx->mlx, "./imgs/collect.xpm", &mlx->x, &mlx->y);
-	mlx->pointer_bomb = mlx_xpm_file_to_image(mlx->mlx, "./imgs/bomb.xpm", &mlx->x, &mlx->y);
+	mlx->pointer_path 	= mlx_xpm_file_to_image(mlx->mlx, "./imgs/pacman50/backpunt50.xpm" , &mlx->x, &mlx->y);
+	mlx->pointer_newpath 	= mlx_xpm_file_to_image(mlx->mlx, "./imgs/pacman50/back50.xpm" , &mlx->x, &mlx->y);
+	mlx->pointer_wall 	= mlx_xpm_file_to_image(mlx->mlx, "./imgs/pacman50/wall50.xpm", &mlx->x, &mlx->y);
+	mlx->pointer_player1 = mlx_xpm_file_to_image(mlx->mlx, "./imgs/pacman50/pacmanRight.xpm", &mlx->x, &mlx->y);
+	mlx->pointer_exit 	= mlx_xpm_file_to_image(mlx->mlx, "./imgs/pacman50/fullexit50.xpm", &mlx->x, &mlx->y);
+	mlx->pointer_collect = mlx_xpm_file_to_image(mlx->mlx, "./imgs/pacman50/button30.xpm", &mlx->x, &mlx->y);
+	//mlx->pointer_bomb = mlx_xpm_file_to_image(mlx->mlx, "./imgs/bomb.xpm", &mlx->x, &mlx->y);
+	// mlx->pointer_path 	= mlx_xpm_file_to_image(mlx->mlx, "./imgs/path.xpm" , &mlx->x, &mlx->y);
+	// mlx->pointer_wall 	= mlx_xpm_file_to_image(mlx->mlx, "./imgs/wall.xpm", &mlx->x, &mlx->y);
+	// mlx->pointer_player1 = mlx_xpm_file_to_image(mlx->mlx, "./imgs/player.xpm", &mlx->x, &mlx->y);
+	// mlx->pointer_exit 	= mlx_xpm_file_to_image(mlx->mlx, "./imgs/exit.xpm", &mlx->x, &mlx->y);
+	// mlx->pointer_collect = mlx_xpm_file_to_image(mlx->mlx, "./imgs/collect.xpm", &mlx->x, &mlx->y);
+	// mlx->pointer_bomb = mlx_xpm_file_to_image(mlx->mlx, "./imgs/bomb.xpm", &mlx->x, &mlx->y);
 	return (1);
 }	
 
@@ -110,15 +114,12 @@ static int  main_init_load_image_base(t_mlx *mlx)
 
 static int main_init_load_image(t_mlx *mlx)
 {
-	//array
 	int height;
 	int w;
 	char aux;
 	
-	main_init_load_image_base(mlx);
-	
-	height = 0;
-	w = 0;
+	main_init_load_image_base(mlx);	
+	height = 0;	
 	while(height < mlx->map_height)
 	{
 		w = 0;
@@ -131,16 +132,19 @@ static int main_init_load_image(t_mlx *mlx)
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_wall,	w * ZOOM, height * ZOOM);
 			if(mlx->map[height][w] == 'P' )
 			{
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_player1,	w * ZOOM, height * ZOOM);
-				mlx->player1_horizontal = w;
-				mlx->player1_vertical = height;				
+				if (mlx->player1_printed == 0)
+				{
+					mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_player1,	w * ZOOM, height * ZOOM);
+					mlx->player1_horizontal = w;
+					mlx->player1_vertical = height;
+					mlx->player1_printed = 1;
+				}
+				else{
+					mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_path,	w * ZOOM, height * ZOOM);
+				}
 			}
 			if(mlx->map[height][w] == 'C' )
-			{
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_collect,	w * ZOOM, height * ZOOM);
-				collectible_increase(mlx);
-				
-			}
 			if(mlx->map[height][w] == 'E' )
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_exit,	w * ZOOM, height * ZOOM);
 			w++;
@@ -160,11 +164,12 @@ int main (int argc, char **argv)
 	error = main_check_args(argc, argv);
 	if ( error <= 0)
 		error = -1;// Call function error -- -1 error in args	
+	
 	error = main_load_map(&mlx, argv);
-	map_check(&mlx);	
+	map_check(&mlx);
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, mlx.map_width * ZOOM, mlx.map_height * ZOOM, "The funland");
-	
+
 	error = main_init_load_xpmfile(&mlx);
 	error = main_init_load_image(&mlx);
 	//mlx_hook(mlx.win, )

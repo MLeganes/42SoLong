@@ -3,7 +3,7 @@
 
 void map_update_path(t_mlx *mlx, int x, int y)
 {
-	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_path,	x * ZOOM, y * ZOOM);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_newpath,	x * ZOOM, y * ZOOM);
 	mlx->map[y][x] = '0';
 	return ;
 }

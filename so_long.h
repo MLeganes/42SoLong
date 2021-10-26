@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: x250 <x250@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:18:59 by x250              #+#    #+#             */
-/*   Updated: 2021/10/26 10:26:24 by x250             ###   ########.fr       */
+/*   Updated: 2021/10/26 13:43:31 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define EXIT_GAME 0
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
-# define ZOOM 100
+# define ZOOM 50
 # define EVENT_KEY_PRESS 2
 # define EVENT_KEY_DESTROYNOTIFY 17
 # define MASK_KEY_PRESS 1L<<2
@@ -46,6 +46,7 @@ typedef struct s_mlx
 	int			map_height;
 	int			map_width;
 	int			player1_horizontal;
+	int			player1_printed;
 	int			player1_new_x;
 	int			player1_vertical;
 	int			player1_new_y;	
@@ -55,6 +56,7 @@ typedef struct s_mlx
 	int			img_size_l;
 	int			img_bpp;
 	void		*pointer_path;
+	void		*pointer_newpath;
 	void		*pointer_wall;
 	void		*pointer_player1;
 	void		*pointer_exit;
@@ -95,7 +97,7 @@ void	collectible_decrease(t_mlx *mlx);
  * Solong error 
  */
 void	error_print_exit(char *error_msg);
-void	exit_game();
+int		exit_game();
 /*
  * Solong utils
  */

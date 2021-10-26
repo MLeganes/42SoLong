@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-void exit_game()
+int  exit_game()
 {	
 	exit (EXIT_GAME);
 }

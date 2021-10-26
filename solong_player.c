@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 17:44:03 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/26 12:42:06 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/26 12:49:20 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void player_update(t_mlx *mlx)
 	if (mlx->map[new_xy[1]][new_xy[0]] == 'E')
 	{
 		if (collectible_check(mlx) == 0)
-			//exit_game();
+			// No close the win and write zyou win.
+			exit_game();
 	}	
 }
