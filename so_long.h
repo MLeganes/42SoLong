@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:18:59 by x250              #+#    #+#             */
-/*   Updated: 2021/10/26 13:43:31 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/27 20:45:54 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,24 @@
  you can change easily the size of your window later if needed.
 */
 # define EXIT_GAME 0
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
+# define WIN_MAX_HEIGHT 200//1080
+# define WIN_MAX_WIDTH 150//1920
 # define ZOOM 50
 # define EVENT_KEY_PRESS 2
 # define EVENT_KEY_DESTROYNOTIFY 17
 # define MASK_KEY_PRESS 1L<<2
 # define MASK_KEY_STRUCTURENOTIFY 1L<<17
+
+typedef struct	s_img {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		height;
+	int		width;
+	void	*file2img;
+}				t_img;
 
 typedef struct s_mlx
 {
@@ -45,12 +56,12 @@ typedef struct s_mlx
 	int			map_exit;
 	int			map_height;
 	int			map_width;
-	int			player1_horizontal;
 	int			player1_printed;
+	int			player1_horizontal;
 	int			player1_new_x;
 	int			player1_vertical;
 	int			player1_new_y;	
-	int			endian;
+	int			endian;	
 	void		*img;
 	int			*img_data;
 	int			img_size_l;
@@ -65,6 +76,10 @@ typedef struct s_mlx
 	int			x;
 	int			y;
 }				t_mlx;
+
+
+
+
 /*
  * Solong init
  */
@@ -98,6 +113,12 @@ void	collectible_decrease(t_mlx *mlx);
  */
 void	error_print_exit(char *error_msg);
 int		exit_game();
+/*
+ * Solong resize
+ */
+void	resize_img(t_mlx *mlx);
+void	ft_copy_px(t_img *data, int x, int y, int color);
+void	ft_create_img(t_img *newimg, t_img *oldimg, int scale);
 /*
  * Solong utils
  */

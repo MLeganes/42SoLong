@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 14:31:29 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/25 20:01:14 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/27 15:04:34 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int key_events(int key, t_mlx *mlx)
 	}	
 	if(key == 53)
 	{		
-		exit (0);
+		exit_game ();
 	}
 	return (1);
 }

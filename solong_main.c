@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/26 13:44:26 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/27 20:23:22 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,21 +160,28 @@ int main (int argc, char **argv)
 	t_mlx	mlx;
 	int		error;
 
+
 	main_init_mlx(&mlx);
+	
 	error = main_check_args(argc, argv);
 	if ( error <= 0)
 		error = -1;// Call function error -- -1 error in args	
 	
 	error = main_load_map(&mlx, argv);
-	map_check(&mlx);
+	map_check(&mlx);	
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, mlx.map_width * ZOOM, mlx.map_height * ZOOM, "The funland");
+	
+	resize_img(&mlx);
 
 	error = main_init_load_xpmfile(&mlx);
 	error = main_init_load_image(&mlx);
-	//mlx_hook(mlx.win, )
+	
 	mlx_hook(mlx.win, EVENT_KEY_PRESS, (MASK_KEY_PRESS), key_events, &mlx);
 	mlx_hook(mlx.win, EVENT_KEY_DESTROYNOTIFY, (MASK_KEY_STRUCTURENOTIFY), exit_game, &mlx);
 	mlx_loop(mlx.mlx);
+	
+	system("leaks so_long");
+
 	return(EXIT_SUCCESS);
 }	
