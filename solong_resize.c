@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   solong_resize.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
+/*   By: x250 <x250@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 16:04:27 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/27 20:47:32 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/27 22:18:07 by x250             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+
+void resize_check(t_mlx *mainmlx)
 
 void resize_img(t_mlx *mainmlx)
 {
@@ -18,6 +21,8 @@ void resize_img(t_mlx *mainmlx)
 	void	*mlx_win;
 	t_img	newimg;
 	t_img	newimg2;
+	int		isresize;
+	t_img	itemp;
 
 	// ini win
 	mlx = mlx_init();
@@ -40,12 +45,14 @@ void resize_img(t_mlx *mainmlx)
 	
 	// int newx = img.height;
 		//if (WIN_MAX_HEIGHT < (img.height * mainmlx->map_height) || WIN_MAX_WIDTH < img.width * mainmlx->map_width)
-	newimg2.height = newimg.height;
-	newimg2.width = newimg.width;	
-	while (WIN_MAX_HEIGHT < (newimg2.height * mainmlx->map_height) && WIN_MAX_WIDTH < newimg2.width * mainmlx->map_width)
+	itemp.height = newimg.height;
+	itemp.width = newimg.width;
+	isresize = 0;	
+	while (WIN_MAX_HEIGHT < (itemp.height * mainmlx->map_height) && WIN_MAX_WIDTH < itemp.width * mainmlx->map_width)
 	{
-		newimg2.height = newimg2.height / 2;
-		newimg2.width = newimg2.width / 2;
+		itemp.height = itemp.height / 2;
+		itemp.width = itemp.width / 2;
+		isresize = 1,
 		//64 / 2
 		//32 / 2
 		//16 / 2
@@ -54,12 +61,18 @@ void resize_img(t_mlx *mainmlx)
 		//2 / 2 -- error
 		//1		-- error		
 	}
+	if (isresize == 1)
+	{
+		itemp.img = mlx_new_image(mlx, itemp.width, itemp.height);
+		itemp.addr = mlx_get_data_addr(itemp.img,&itemp.bits_per_pixel, &itemp.line_length,
+								&itemp.endian);
+		// Make copy of newimg TO newimg2
+		ft_create_img(&newimg2, &newimg, 2);		
+	}
 	
 	
-	//calcualte the new size!!!
+	
 
-	// Make copy of newimg TO newimg2
-	ft_create_img(&newimg2, &newimg, 2);
 
 	// PUt the imgssssss in the win!!!!	
 	mlx_put_image_to_window(mlx, mlx_win, newimg.img, 100, 1);
