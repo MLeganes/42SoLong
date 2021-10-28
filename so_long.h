@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:18:59 by x250              #+#    #+#             */
-/*   Updated: 2021/10/27 20:45:54 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/28 17:11:50 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,36 @@
  Defines for the width and height of your window. I suggest you to do the same so
  you can change easily the size of your window later if needed.
 */
-# define EXIT_GAME 0
-# define WIN_MAX_HEIGHT 200//1080
-# define WIN_MAX_WIDTH 150//1920
-# define ZOOM 50
+
+# define WIN_MAX_HEIGHT 1080
+# define WIN_MAX_WIDTH 1920
+# define ZOOM 64
+
 # define EVENT_KEY_PRESS 2
 # define EVENT_KEY_DESTROYNOTIFY 17
 # define MASK_KEY_PRESS 1L<<2
 # define MASK_KEY_STRUCTURENOTIFY 1L<<17
 
-typedef struct	s_img {
+# define EXIT_GAME 0
+# define PLAYER_DIR_A 1
+# define PLAYER_DIR_S 2
+# define PLAYER_DIR_D 3
+# define PLAYER_DIR_W 4
+
+
+# define IMG_EXIT 0
+# define IMG_PATH_1 1
+# define IMG_PATH_2 2
+# define IMG_WALL 3
+# define IMG_COLLECT 4
+# define IMG_PLAY_A 5
+# define IMG_PLAY_W 6
+# define IMG_PLAY_D 7
+# define IMG_PLAY_S 8
+# define MAX_OBJS 9 
+
+typedef struct	s_img 
+{
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -42,8 +62,17 @@ typedef struct	s_img {
 	int		endian;
 	int		height;
 	int		width;
-	void	*file2img;
 }				t_img;
+
+typedef struct s_player 
+{
+	int			dir;
+	int			printed;
+	int			horizontal;
+	int			vertical;
+	int			new_x;
+	int			new_y;	
+}				t_player;
 
 typedef struct s_mlx
 {
@@ -56,6 +85,7 @@ typedef struct s_mlx
 	int			map_exit;
 	int			map_height;
 	int			map_width;
+	int			player1_dir;
 	int			player1_printed;
 	int			player1_horizontal;
 	int			player1_new_x;
@@ -66,6 +96,9 @@ typedef struct s_mlx
 	int			*img_data;
 	int			img_size_l;
 	int			img_bpp;
+	
+	t_img		imgs[9];	
+	
 	void		*pointer_path;
 	void		*pointer_newpath;
 	void		*pointer_wall;

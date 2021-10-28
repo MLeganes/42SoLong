@@ -6,14 +6,14 @@
 #    By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 11:24:29 by amorcill          #+#    #+#              #
-#    Updated: 2021/10/27 19:09:55 by amorcill         ###   ########.fr        #
+#    Updated: 2021/10/28 12:22:13 by amorcill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= so_long
 CC		= gcc
 FLAGS	= -Wall -Wextra -Werror
-SNTZ	= -fsanitize=address -fno-omit-frame-pointer
+SNTZ	= -fsanitize=address -fno-omit-frame-pointer  -static-libsan
 #SNTZ	= 
 OBJS	= $(patsubst %.c, %.o, $(SRCS))
 SRCS	= solong_main.c \

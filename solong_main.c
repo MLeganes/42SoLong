@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solong_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: x250 <x250@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/28 00:58:50 by x250             ###   ########.fr       */
+/*   Updated: 2021/10/28 17:29:30 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,16 @@ static int	main_init_load_xpmfile(t_mlx *mlx)
 	mlx->pointer_path = mlx_xpm_file_to_image(mlx->mlx, "./imagens/path.xpm", &mlx->x, &mlx->y);
 	mlx->pointer_newpath = mlx_xpm_file_to_image(mlx->mlx, "./imagens/back.xpm", &mlx->x, &mlx->y);
 	mlx->pointer_wall = mlx_xpm_file_to_image(mlx->mlx, "./imagens/wall.xpm", &mlx->x, &mlx->y);
-	mlx->pointer_player1 = mlx_xpm_file_to_image(mlx->mlx, "./imagens/pacmanRight.xpm", &mlx->x, &mlx->y);
 	mlx->pointer_exit = mlx_xpm_file_to_image(mlx->mlx, "./imagens/exit.xpm", &mlx->x, &mlx->y);
 	mlx->pointer_collect = mlx_xpm_file_to_image(mlx->mlx, "./imagens/button.xpm", &mlx->x, &mlx->y);
+	
+	mlx->pointer_player1 = mlx_xpm_file_to_image(mlx->mlx, "./imagens/pacmanRight.xpm", &mlx->x, &mlx->y);
+	
+	mlx->imgs[IMG_PLAY_S].img = mlx_xpm_file_to_image(mlx->mlx, "./imagens/pacmanDown.xpm", &mlx->imgs[IMG_PLAY_S].width, &mlx->imgs[IMG_PLAY_S].height );
+	mlx->imgs[IMG_PLAY_A].img = mlx_xpm_file_to_image(mlx->mlx, "./imagens/pacmanLeft.xpm", &mlx->imgs[IMG_PLAY_A].width, &mlx->imgs[IMG_PLAY_A].height );
+	mlx->imgs[IMG_PLAY_W].img = mlx_xpm_file_to_image(mlx->mlx, "./imagens/pacmanUp.xpm", &mlx->imgs[IMG_PLAY_W].width, &mlx->imgs[IMG_PLAY_W].height );
+	mlx->imgs[IMG_PLAY_D].img = mlx_xpm_file_to_image(mlx->mlx, "./imagens/pacmanRight.xpm", &mlx->imgs[IMG_PLAY_D].width, &mlx->imgs[IMG_PLAY_D].height );
+		
 	return (1);
 }
 
@@ -125,7 +132,8 @@ static int	main_init_load_image(t_mlx *mlx)
 			{
 				if (mlx->player1_printed == 0)
 				{
-					mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_player1, w * ZOOM, height * ZOOM);
+					//mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_player1, w * ZOOM, height * ZOOM);
+					mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PLAY_D].img,  w * ZOOM, height * ZOOM);											
 					mlx->player1_horizontal = w;
 					mlx->player1_vertical = height;
 					mlx->player1_printed = 1;
@@ -163,7 +171,7 @@ int	main(int argc, char **argv)
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, mlx.map_width * ZOOM, mlx.map_height * ZOOM, "The funland");
 
-	resize_img(&mlx);
+	//resize_img(&mlx);
 
 	error = main_init_load_xpmfile(&mlx);
 	error = main_init_load_image(&mlx);

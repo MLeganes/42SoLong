@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   solong_resize.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: x250 <x250@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 16:04:27 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/27 22:18:07 by x250             ###   ########.fr       */
+/*   Updated: 2021/10/28 11:56:26 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 
-void resize_check(t_mlx *mainmlx)
+// void resize_check(t_mlx *mainmlx)
+// {
+	
+// }
 
 void resize_img(t_mlx *mainmlx)
 {
@@ -40,8 +43,7 @@ void resize_img(t_mlx *mainmlx)
 	newimg2.img = mlx_new_image(mlx, 25, 25);
 	newimg2.addr = mlx_get_data_addr(newimg2.img,&newimg2.bits_per_pixel, &newimg2.line_length,
 								&newimg2.endian);
-		
-
+	
 	
 	// int newx = img.height;
 		//if (WIN_MAX_HEIGHT < (img.height * mainmlx->map_height) || WIN_MAX_WIDTH < img.width * mainmlx->map_width)
@@ -52,7 +54,7 @@ void resize_img(t_mlx *mainmlx)
 	{
 		itemp.height = itemp.height / 2;
 		itemp.width = itemp.width / 2;
-		isresize = 1,
+		isresize = 1;
 		//64 / 2
 		//32 / 2
 		//16 / 2
@@ -61,6 +63,7 @@ void resize_img(t_mlx *mainmlx)
 		//2 / 2 -- error
 		//1		-- error		
 	}
+	
 	if (isresize == 1)
 	{
 		itemp.img = mlx_new_image(mlx, itemp.width, itemp.height);
@@ -69,18 +72,12 @@ void resize_img(t_mlx *mainmlx)
 		// Make copy of newimg TO newimg2
 		ft_create_img(&newimg2, &newimg, 2);		
 	}
-	
-	
-	
-
-
 	// PUt the imgssssss in the win!!!!	
 	mlx_put_image_to_window(mlx, mlx_win, newimg.img, 100, 1);
 	mlx_put_image_to_window(mlx, mlx_win, newimg2.img, 200, 1);
 		
 	// LOOPPPPPPPPPP
 	mlx_loop(mlx);
-
 }
 
 void ft_create_img(t_img *newimg, t_img *oldimg, int scale)

@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 17:44:03 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/26 12:49:20 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/28 11:38:02 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	player_move_a(t_mlx *mlx)
 {
 	mlx->player1_new_y = mlx->player1_vertical;
 	mlx->player1_new_x = mlx->player1_horizontal - 1;
+	mlx->player1_dir = PLAYER_DIR_A;
 	player_update(mlx);	
 
 	// new_y = mlx->player1_vertical;
@@ -40,6 +41,8 @@ int	player_move_s(t_mlx *mlx)
 {	
 	mlx->player1_new_y = mlx->player1_vertical + 1;
 	mlx->player1_new_x = mlx->player1_horizontal;
+	mlx->player1_dir = PLAYER_DIR_S;
+	
 	player_update(mlx);	
 	// new_y = (mlx->player1_vertical) + 1;
 	// new_x = mlx->player1_horizontal;
@@ -62,6 +65,7 @@ int	player_move_d(t_mlx *mlx)
 {
 	mlx->player1_new_y = mlx->player1_vertical;
 	mlx->player1_new_x = (mlx->player1_horizontal) + 1;
+	mlx->player1_dir = PLAYER_DIR_D;
 	player_update(mlx);	
 	// if (mlx->map[new_y][new_x] == 'C')
 	// {
@@ -82,16 +86,15 @@ int	player_move_w(t_mlx *mlx)
 {	
 	mlx->player1_new_y = (mlx->player1_vertical) - 1;
 	mlx->player1_new_x = mlx->player1_horizontal;
+	mlx->player1_dir = PLAYER_DIR_W;
 	player_update(mlx);	
 	return (0);
 }
 
 void player_update(t_mlx *mlx)
 {
-	int		new_xy[2];	
-	
-//aqui!!!!!!!
-	
+	int		new_xy[2];
+
 	new_xy[0] = mlx->player1_new_x;
 	new_xy[1] = mlx->player1_new_y;	
 	if (mlx->map[new_xy[1]][new_xy[0]] == '0' || mlx->map[new_xy[1]][new_xy[0]] == 'C')
@@ -99,7 +102,7 @@ void player_update(t_mlx *mlx)
 		if (mlx->map[new_xy[1]][new_xy[0]] == 'C')
 		{
 			collectible_decrease(mlx);
-			map_update_path(mlx,new_xy[0], new_xy[1]);			
+			map_update_path(mlx,new_xy[0], new_xy[1]);
 		}
 		map_update_path(mlx, mlx->player1_horizontal, mlx->player1_vertical);
 		map_update_player(mlx, new_xy[0], new_xy[1]);
