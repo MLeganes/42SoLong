@@ -2,7 +2,7 @@
 
 void collectible_increase(t_mlx *mlx)
 {
-	mlx->imap.collectibles++;
+	mlx->imap.collectibles++;	
 }
 
 int collectible_check(t_mlx *mlx)
@@ -14,4 +14,5 @@ int collectible_check(t_mlx *mlx)
 void collectible_decrease(t_mlx *mlx)
 {
 	mlx->imap.collectibles--;
+	score_collectibles(mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:18:59 by x250              #+#    #+#             */
-/*   Updated: 2021/10/28 18:35:24 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/28 19:26:44 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ typedef struct s_player
 	int			horizontal;
 	int			vertical;
 	int			new_x;
-	int			new_y;	
+	int			new_y;
+	int			steps;
+	int			collects;
+	int			lives;
 }				t_player;
 
 typedef struct s_map
@@ -134,4 +137,10 @@ void	ft_create_img(t_img *newimg, t_img *oldimg, int scale);
  */
 void	ft_remove_eol(char *s);
 int		ft_count_lines(t_mlx *mlx, char **argv);
+/*
+ * Solong score
+ */
+void	score_print(t_mlx *mlx);
+void	score_steps(t_mlx *mlx);
+void	score_collectibles(t_mlx *mlx);
 #endif

@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 17:44:03 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/28 18:14:07 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/28 19:22:16 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ void player_update(t_mlx *mlx)
 		if (collectible_check(mlx) == 0)
 			// No close the win and write zyou win.
 			exit_game();
-	}	
+	}
+	score_steps(mlx);
 }

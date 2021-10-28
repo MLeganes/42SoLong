@@ -6,7 +6,7 @@
 #    By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 11:24:29 by amorcill          #+#    #+#              #
-#    Updated: 2021/10/28 12:22:13 by amorcill         ###   ########.fr        #
+#    Updated: 2021/10/28 18:47:44 by amorcill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS	= solong_main.c \
 		  solong_error.c \
 		  solong_resize.c \
 		  solong_utils.c \
+		  solong_score.c \
 
 %.o: %.c
 	$(CC) $(SNTZ) $(FLAGS) -Ilibmlx -Ilibft -c $< -o $@
