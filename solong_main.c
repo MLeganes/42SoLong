@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/28 17:29:30 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/28 18:10:15 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,22 +70,17 @@ static int	main_load_map(t_mlx *mlx, char **argv)
 	return (1);
 }
 
-static int	main_init_load_xpmfile(t_mlx *mlx)
-{
-	mlx->pointer_path = mlx_xpm_file_to_image(mlx->mlx, "./imagens/path.xpm", &mlx->x, &mlx->y);
-	mlx->pointer_newpath = mlx_xpm_file_to_image(mlx->mlx, "./imagens/back.xpm", &mlx->x, &mlx->y);
-	mlx->pointer_wall = mlx_xpm_file_to_image(mlx->mlx, "./imagens/wall.xpm", &mlx->x, &mlx->y);
-	mlx->pointer_exit = mlx_xpm_file_to_image(mlx->mlx, "./imagens/exit.xpm", &mlx->x, &mlx->y);
-	mlx->pointer_collect = mlx_xpm_file_to_image(mlx->mlx, "./imagens/button.xpm", &mlx->x, &mlx->y);
-	
-	mlx->pointer_player1 = mlx_xpm_file_to_image(mlx->mlx, "./imagens/pacmanRight.xpm", &mlx->x, &mlx->y);
-	
+static void	main_init_load_xpmfile(t_mlx *mlx)
+{	
+	mlx->imgs[IMG_PATH_1].img = mlx_xpm_file_to_image(mlx->mlx, "./imagens/path.xpm", &mlx->imgs[IMG_PATH_1].width, &mlx->imgs[IMG_PATH_1].height );
+	mlx->imgs[IMG_PATH_2].img = mlx_xpm_file_to_image(mlx->mlx, "./imagens/back.xpm", &mlx->imgs[IMG_PATH_2].width, &mlx->imgs[IMG_PATH_2].height );
+	mlx->imgs[IMG_WALL].img = mlx_xpm_file_to_image(mlx->mlx, "./imagens/wall.xpm", &mlx->imgs[IMG_WALL].width, &mlx->imgs[IMG_WALL].height );
+	mlx->imgs[IMG_EXIT].img = mlx_xpm_file_to_image(mlx->mlx, "./imagens/exit.xpm", &mlx->imgs[IMG_EXIT].width, &mlx->imgs[IMG_EXIT].height );
+	mlx->imgs[IMG_COLLECT].img = mlx_xpm_file_to_image(mlx->mlx, "./imagens/button.xpm", &mlx->imgs[IMG_COLLECT].width, &mlx->imgs[IMG_COLLECT].height );
 	mlx->imgs[IMG_PLAY_S].img = mlx_xpm_file_to_image(mlx->mlx, "./imagens/pacmanDown.xpm", &mlx->imgs[IMG_PLAY_S].width, &mlx->imgs[IMG_PLAY_S].height );
 	mlx->imgs[IMG_PLAY_A].img = mlx_xpm_file_to_image(mlx->mlx, "./imagens/pacmanLeft.xpm", &mlx->imgs[IMG_PLAY_A].width, &mlx->imgs[IMG_PLAY_A].height );
 	mlx->imgs[IMG_PLAY_W].img = mlx_xpm_file_to_image(mlx->mlx, "./imagens/pacmanUp.xpm", &mlx->imgs[IMG_PLAY_W].width, &mlx->imgs[IMG_PLAY_W].height );
-	mlx->imgs[IMG_PLAY_D].img = mlx_xpm_file_to_image(mlx->mlx, "./imagens/pacmanRight.xpm", &mlx->imgs[IMG_PLAY_D].width, &mlx->imgs[IMG_PLAY_D].height );
-		
-	return (1);
+	mlx->imgs[IMG_PLAY_D].img = mlx_xpm_file_to_image(mlx->mlx, "./imagens/pacmanRight.xpm", &mlx->imgs[IMG_PLAY_D].width, &mlx->imgs[IMG_PLAY_D].height );	
 }
 
 static int	main_init_load_image_base(t_mlx *mlx)
@@ -102,7 +97,7 @@ static int	main_init_load_image_base(t_mlx *mlx)
 		while (w < mlx->map_width)
 		{
 			aux = mlx->map[height][w];
-			mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_path, w * ZOOM, height * ZOOM);
+			mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_1].img, w * ZOOM, height * ZOOM);
 			w++;
 		}
 		height++;
@@ -110,7 +105,7 @@ static int	main_init_load_image_base(t_mlx *mlx)
 	return (0);
 }
 
-static int	main_init_load_image(t_mlx *mlx)
+static void main_init_load_image(t_mlx *mlx)
 {
 	int		height;
 	int		w;
@@ -125,33 +120,32 @@ static int	main_init_load_image(t_mlx *mlx)
 		{
 			aux = mlx->map[height][w];
 			if (mlx->map[height][w] == '0')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_path, w * ZOOM, height * ZOOM);
+				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_1].img, w * ZOOM, height * ZOOM);
 			if (mlx->map[height][w] == '1')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_wall, w * ZOOM, height * ZOOM);
+				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_WALL].img, w * ZOOM, height * ZOOM);
 			if (mlx->map[height][w] == 'P')
 			{
-				if (mlx->player1_printed == 0)
+				if (mlx->player1.printed == 0)
 				{
-					//mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_player1, w * ZOOM, height * ZOOM);
 					mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PLAY_D].img,  w * ZOOM, height * ZOOM);											
-					mlx->player1_horizontal = w;
-					mlx->player1_vertical = height;
-					mlx->player1_printed = 1;
+					mlx->player1.horizontal = w;
+					mlx->player1.vertical = height;
+					mlx->player1.printed = 1;
 				}
 				else
 				{
-					mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_path, w * ZOOM, height * ZOOM);
+					mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_1].img, w * ZOOM, height * ZOOM);
+					mlx->map[height][w] = '0';					
 				}
 			}
 			if (mlx->map[height][w] == 'C')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_collect, w * ZOOM, height * ZOOM);
+				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_COLLECT].img, w * ZOOM, height * ZOOM);
 			if (mlx->map[height][w] == 'E')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_exit, w * ZOOM, height * ZOOM);
+				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_EXIT].img, w * ZOOM, height * ZOOM);
 			w++;
 		}
 		height++;
 	}
-	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -173,8 +167,8 @@ int	main(int argc, char **argv)
 
 	//resize_img(&mlx);
 
-	error = main_init_load_xpmfile(&mlx);
-	error = main_init_load_image(&mlx);
+	main_init_load_xpmfile(&mlx);
+	main_init_load_image(&mlx);
 
 	mlx_hook(mlx.win, EVENT_KEY_PRESS, (MASK_KEY_PRESS), key_events, &mlx);
 	mlx_hook(mlx.win, EVENT_KEY_DESTROYNOTIFY, (MASK_KEY_STRUCTURENOTIFY), exit_game, &mlx);

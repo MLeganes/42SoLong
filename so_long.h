@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:18:59 by x250              #+#    #+#             */
-/*   Updated: 2021/10/28 17:11:50 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/28 18:12:56 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ typedef struct s_mlx
 	int			map_exit;
 	int			map_height;
 	int			map_width;
-	int			player1_dir;
-	int			player1_printed;
+	int			player1_dir; // to remove
+	int			player1_printed; // to  remove
 	int			player1_horizontal;
 	int			player1_new_x;
 	int			player1_vertical;
@@ -97,17 +97,9 @@ typedef struct s_mlx
 	int			img_size_l;
 	int			img_bpp;
 	
-	t_img		imgs[9];	
+	t_img		imgs[9];
+	t_player	player1;
 	
-	void		*pointer_path;
-	void		*pointer_newpath;
-	void		*pointer_wall;
-	void		*pointer_player1;
-	void		*pointer_exit;
-	void		*pointer_collect;
-	void		*pointer_bomb;
-	int			x;
-	int			y;
 }				t_mlx;
 
 
@@ -124,10 +116,10 @@ int		key_events(int key, t_mlx *mlx);
 /*
  * Solong player
  */
-int		player_move_a(t_mlx *mlx);
-int		player_move_s(t_mlx *mlx);
-int		player_move_d(t_mlx *mlx);
-int		player_move_w(t_mlx *mlx);
+void	player_move_a(t_mlx *mlx);
+void	player_move_s(t_mlx *mlx);
+void	player_move_d(t_mlx *mlx);
+void	player_move_w(t_mlx *mlx);
 void	player_update(t_mlx *mlx);
 /*
  * Solong map

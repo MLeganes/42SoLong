@@ -2,8 +2,8 @@
 #include "so_long.h"
 
 void map_update_path(t_mlx *mlx, int x, int y)
-{
-	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_newpath,	x * ZOOM, y * ZOOM);
+{	
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_2].img, x * ZOOM, y * ZOOM);
 	mlx->map[y][x] = '0';
 	return ;
 }
@@ -11,22 +11,17 @@ void map_update_path(t_mlx *mlx, int x, int y)
 void map_update_player(t_mlx *mlx, int x, int y)
 {
 
-	if(mlx->player1_dir == PLAYER_DIR_A)
-		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PLAY_A].img, x * ZOOM, y * ZOOM);
-		
-	if(mlx->player1_dir == PLAYER_DIR_S)
-		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PLAY_S].img, x * ZOOM, y * ZOOM);
-	
-	if(mlx->player1_dir == PLAYER_DIR_W)
+	if(mlx->player1.dir == PLAYER_DIR_A)
+		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PLAY_A].img, x * ZOOM, y * ZOOM);		
+	if(mlx->player1.dir == PLAYER_DIR_S)
+		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PLAY_S].img, x * ZOOM, y * ZOOM);	
+	if(mlx->player1.dir == PLAYER_DIR_W)
 		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PLAY_W].img, x * ZOOM, y * ZOOM);
-
-	if(mlx->player1_dir == PLAYER_DIR_D)
-		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PLAY_D].img, x * ZOOM, y * ZOOM);
-
-	//mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->pointer_player1, x * ZOOM, y * ZOOM);
+	if(mlx->player1.dir == PLAYER_DIR_D)
+		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PLAY_D].img, x * ZOOM, y * ZOOM);	
 	mlx->map[y][x] = 'P';
-	mlx->player1_horizontal = x;
-	mlx->player1_vertical = y;
+	mlx->player1.horizontal = x;
+	mlx->player1.vertical = y;
 	return ;
 }
 
