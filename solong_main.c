@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/28 18:10:15 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/28 18:30:28 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	main_load_map(t_mlx *mlx, char **argv)
 	int		fd;
 
 	ft_count_lines(mlx, argv);
-	lines = mlx->map_height;
+	lines = mlx->imap.height;
 	mlx->map = (char **)malloc((lines + 1) * (sizeof(char *)));
 	if (mlx->map == NULL)
 		return (-8);
@@ -91,10 +91,10 @@ static int	main_init_load_image_base(t_mlx *mlx)
 
 	height = 0;
 	w = 0;
-	while (height < mlx->map_height)
+	while (height < mlx->imap.height)
 	{
 		w = 0;
-		while (w < mlx->map_width)
+		while (w < mlx->imap.width)
 		{
 			aux = mlx->map[height][w];
 			mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_1].img, w * ZOOM, height * ZOOM);
@@ -113,10 +113,10 @@ static void main_init_load_image(t_mlx *mlx)
 
 	main_init_load_image_base(mlx);
 	height = 0;
-	while (height < mlx->map_height)
+	while (height < mlx->imap.height)
 	{
 		w = 0;
-		while (w < mlx->map_width)
+		while (w < mlx->imap.width)
 		{
 			aux = mlx->map[height][w];
 			if (mlx->map[height][w] == '0')
@@ -163,7 +163,7 @@ int	main(int argc, char **argv)
 	error = main_load_map(&mlx, argv);
 	map_check(&mlx);
 	mlx.mlx = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx, mlx.map_width * ZOOM, mlx.map_height * ZOOM, "The funland");
+	mlx.win = mlx_new_window(mlx.mlx, mlx.imap.width * ZOOM, mlx.imap.height * ZOOM, "The funland");
 
 	//resize_img(&mlx);
 

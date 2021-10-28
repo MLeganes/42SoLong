@@ -55,9 +55,9 @@ void	map_check_midline(t_mlx *mlx, char *s)
 		else
 		{		
 			if (s[i] == 'P')
-				mlx->map_players++;
+				mlx->imap.players++;
 			if (s[i] == 'E')
-				mlx->map_exit++;
+				mlx->imap.exit++;
 			if (s[i] == 'C')
 				collectible_increase(mlx);			
 		}
@@ -73,7 +73,7 @@ static void map_check_linelength(t_mlx *mlx)
 	char 	*line;
 	size_t	auxlen;
 	
-	if (mlx->map_width == mlx->map_height)
+	if (mlx->imap.width == mlx->imap.height)
 		error_print_exit("[map error] Map is square, no valid!");
 	i = 1;
 	len = ft_strlen(mlx->map[0]);
@@ -89,11 +89,11 @@ static void map_check_linelength(t_mlx *mlx)
 }
 static void map_check_minimum(t_mlx *mlx)
 {
-	if (mlx->map_players < 1)
+	if (mlx->imap.players < 1)
 		error_print_exit("[map error] Map does not have player!");
-	if (mlx->map_exit < 1)
+	if (mlx->imap.exit < 1)
 		error_print_exit("[map error] Map does not have exit!");
-	if (mlx->map_collectibles < 1)
+	if (mlx->imap.collectibles < 1)
 		error_print_exit("[map error] Map does not have collectibles!");
 	return ;
 }
@@ -106,10 +106,10 @@ void map_check(t_mlx *mlx)
 	map_check_linelength(mlx);		
 	height = 0;
 	line = NULL;
-	while(height < mlx->map_height &&  mlx->map[height] != NULL)
+	while(height < mlx->imap.height &&  mlx->map[height] != NULL)
 	{
 		line = mlx->map[height];
-		if( height == 0 || height == mlx->map_height - 1)
+		if( height == 0 || height == mlx->imap.height - 1)
 			map_check_wall(line);
 		else
 			map_check_midline(mlx, line);

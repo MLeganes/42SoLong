@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 16:04:27 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/28 11:56:26 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/28 18:32:03 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void resize_img(t_mlx *mainmlx)
 	newimg.addr = mlx_get_data_addr(newimg.img, &newimg.bits_per_pixel, &newimg.line_length,
 								&newimg.endian);
 	
-	mainmlx->map_height *= 1;
+	mainmlx->imap.height *= 1;
 	
 	// new image, put pixelsssss
 		// calculate the new size.
@@ -50,7 +50,7 @@ void resize_img(t_mlx *mainmlx)
 	itemp.height = newimg.height;
 	itemp.width = newimg.width;
 	isresize = 0;	
-	while (WIN_MAX_HEIGHT < (itemp.height * mainmlx->map_height) && WIN_MAX_WIDTH < itemp.width * mainmlx->map_width)
+	while (WIN_MAX_HEIGHT < (itemp.height * mainmlx->imap.height) && WIN_MAX_WIDTH < itemp.width * mainmlx->imap.width)
 	{
 		itemp.height = itemp.height / 2;
 		itemp.width = itemp.width / 2;

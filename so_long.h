@@ -6,15 +6,13 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:18:59 by x250              #+#    #+#             */
-/*   Updated: 2021/10/28 18:12:56 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/28 18:35:24 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include <math.h>
-//# include <mlx.h>
-//# include <libft.h>
 # include "libmlx/mlx.h"
 # include "libft/libft.h"
 # include <fcntl.h>
@@ -25,7 +23,6 @@
  Defines for the width and height of your window. I suggest you to do the same so
  you can change easily the size of your window later if needed.
 */
-
 # define WIN_MAX_HEIGHT 1080
 # define WIN_MAX_WIDTH 1920
 # define ZOOM 64
@@ -51,7 +48,6 @@
 # define IMG_PLAY_W 6
 # define IMG_PLAY_D 7
 # define IMG_PLAY_S 8
-# define MAX_OBJS 9 
 
 typedef struct	s_img 
 {
@@ -74,36 +70,25 @@ typedef struct s_player
 	int			new_y;	
 }				t_player;
 
+typedef struct s_map
+{
+	int			players;
+	int			collectibles;
+	int			exit;
+	int			height;
+	int			width;
+}				t_map;
+
 typedef struct s_mlx
 {
 	char		*name;
 	void		*mlx;
 	void		*win;
 	char		**map;
-	int			map_players;
-	int			map_collectibles;
-	int			map_exit;
-	int			map_height;
-	int			map_width;
-	int			player1_dir; // to remove
-	int			player1_printed; // to  remove
-	int			player1_horizontal;
-	int			player1_new_x;
-	int			player1_vertical;
-	int			player1_new_y;	
-	int			endian;	
-	void		*img;
-	int			*img_data;
-	int			img_size_l;
-	int			img_bpp;
-	
+	t_map		imap;	
 	t_img		imgs[9];
 	t_player	player1;
-	
 }				t_mlx;
-
-
-
 
 /*
  * Solong init

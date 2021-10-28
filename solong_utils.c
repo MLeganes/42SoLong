@@ -43,7 +43,7 @@ int ft_count_lines(t_mlx *mlx, char **argv)
 	}
 	close(fd);	
 	
-	mlx->map_height = lines;	
-	mlx->map_width = len;
+	mlx->imap.height = lines;	
+	mlx->imap.width = len;
 	return (1);
 }
