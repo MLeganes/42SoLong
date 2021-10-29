@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solong_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
+/*   By: x250 <x250@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/28 19:20:26 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/29 11:02:23 by x250             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,8 +170,11 @@ int	main(int argc, char **argv)
 	main_init_load_xpmfile(&mlx);
 	main_init_load_image(&mlx);
 
-	mlx_hook(mlx.win, EVENT_KEY_PRESS, (MASK_KEY_PRESS), key_events, &mlx);
-	mlx_hook(mlx.win, EVENT_KEY_DESTROYNOTIFY, (MASK_KEY_STRUCTURENOTIFY), exit_game, &mlx);
+	//mlx_hook(mlx.win, EVENT_KEY_PRESS, (MASK_KEY_PRESS), key_events, &mlx);
+	mlx_hook(mlx.win, 2, 1L<<2, key_events, &mlx);
+	
+	//mlx_hook(mlx.win, EVENT_KEY_DESTROYNOTIFY, (MASK_KEY_STRUCTURENOTIFY), exit_game, &mlx);
+	mlx_hook(mlx.win, 17, 1L<<17, exit_game, &mlx);
 	score_print(&mlx);
 	mlx_loop(mlx.mlx);
 

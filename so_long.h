@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
+/*   By: x250 <x250@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:18:59 by x250              #+#    #+#             */
-/*   Updated: 2021/10/28 19:26:44 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/29 11:06:17 by x250             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,16 @@
 # define WIN_MAX_WIDTH 1920
 # define ZOOM 64
 
-# define EVENT_KEY_PRESS 2
-# define EVENT_KEY_DESTROYNOTIFY 17
-# define MASK_KEY_PRESS 1L<<2
-# define MASK_KEY_STRUCTURENOTIFY 1L<<17
+// # define EVENT_KEY_PRESS 2
+// # define EVENT_KEY_DESTROYNOTIFY 17
+// # define MASK_KEY_PRESS 1L<<2
+// # define MASK_KEY_STRUCTURENOTIFY 1L<<17
 
-# define EXIT_GAME 0
+//# define EXIT_GAME 0
 # define PLAYER_DIR_A 1
 # define PLAYER_DIR_S 2
 # define PLAYER_DIR_D 3
 # define PLAYER_DIR_W 4
-
-
 # define IMG_EXIT 0
 # define IMG_PATH_1 1
 # define IMG_PATH_2 2
@@ -49,7 +47,7 @@
 # define IMG_PLAY_D 7
 # define IMG_PLAY_S 8
 
-typedef struct	s_img 
+typedef struct s_img
 {
 	void	*img;
 	char	*addr;
@@ -58,9 +56,9 @@ typedef struct	s_img
 	int		endian;
 	int		height;
 	int		width;
-}				t_img;
+}			t_img;
 
-typedef struct s_player 
+typedef struct s_player
 {
 	int			dir;
 	int			printed;
