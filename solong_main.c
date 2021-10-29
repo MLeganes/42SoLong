@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/29 16:12:32 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/29 16:59:00 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,30 +159,19 @@ int	main(int argc, char **argv)
 	int		error;
 
 	main_init_mlx(&mlx);
-
 	error = main_check_args(argc, argv);
-	if (error <= 0)
-		error = -1; // Call function error -- -1 error in args
-
 	error = main_load_map(&mlx, argv);
 	map_check(&mlx);
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, mlx.imap.width * ZOOM, mlx.imap.height * ZOOM, "The So Long");
 
 	//resize_img(&mlx);
-
 	main_init_load_xpmfile(&mlx);
 	main_init_load_image(&mlx);
-
-	//mlx_hook(mlx.win, EVENT_KEY_PRESS, (MASK_KEY_PRESS), key_events, &mlx);
 	mlx_hook(mlx.win, 2, 1L<<2, key_events, &mlx);
-	
-	//mlx_hook(mlx.win, EVENT_KEY_DESTROYNOTIFY, (MASK_KEY_STRUCTURENOTIFY), exit_game, &mlx);
 	mlx_hook(mlx.win, 17, 1L<<17, exit_game, &mlx);
 	score_print(&mlx);
 	mlx_loop(mlx.mlx);
-
 	system("leaks so_long");
-
 	return (EXIT_SUCCESS);
 }
