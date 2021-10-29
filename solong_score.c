@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 18:38:15 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/28 19:55:55 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/29 16:16:44 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ void	score_print(t_mlx *mlx)
 	steps = ft_itoa(mlx->player1.steps);
 	score = ft_itoa(mlx->player1.collects);
 	lives = ft_itoa(mlx->player1.lives);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_WALL].img, 0 * ZOOM, 0 * ZOOM);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_WALL].img, 1 * ZOOM, 0 * ZOOM);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_WALL].img, 2 * ZOOM, 0 * ZOOM);
 	mlx_string_put(mlx->mlx, mlx->win, 15, 20, 0x00FFFFFFF, "SCORE ");
 	mlx_string_put(mlx->mlx, mlx->win, 15, 40, 0x00FFFFFFF, score);
 	mlx_string_put(mlx->mlx, mlx->win, 80, 20, 0x00FFFFFFF, "STEPS ");
