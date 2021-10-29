@@ -6,7 +6,7 @@
 /*   By: x250 <x250@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:18:59 by x250              #+#    #+#             */
-/*   Updated: 2021/10/29 11:06:17 by x250             ###   ########.fr       */
+/*   Updated: 2021/10/29 11:26:25 by x250             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 // # define EVENT_KEY_DESTROYNOTIFY 17
 // # define MASK_KEY_PRESS 1L<<2
 // # define MASK_KEY_STRUCTURENOTIFY 1L<<17
-
 //# define EXIT_GAME 0
+
 # define PLAYER_DIR_A 1
 # define PLAYER_DIR_S 2
 # define PLAYER_DIR_D 3
@@ -46,6 +46,7 @@
 # define IMG_PLAY_W 6
 # define IMG_PLAY_D 7
 # define IMG_PLAY_S 8
+# define IMG_PINK 9
 
 typedef struct s_img
 {
@@ -71,6 +72,14 @@ typedef struct s_player
 	int			lives;
 }				t_player;
 
+typedef struct s_ghost
+{
+	int			horizontal;
+	int			vertical;
+	int			new_x;
+	int			new_y;
+}				t_ghost;
+
 typedef struct s_map
 {
 	int			players;
@@ -87,8 +96,9 @@ typedef struct s_mlx
 	void		*win;
 	char		**map;
 	t_map		imap;	
-	t_img		imgs[9];
+	t_img		imgs[10];
 	t_player	player1;
+	t_ghost		pink;
 }				t_mlx;
 
 /*
