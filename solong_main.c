@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solong_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: x250 <x250@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/29 11:02:23 by x250             ###   ########.fr       */
+/*   Updated: 2021/10/29 16:12:32 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,9 @@ static void	main_init_load_xpmfile(t_mlx *mlx)
 	mlx->imgs[IMG_PLAY_S].img = mlx_xpm_file_to_image(mlx->mlx, "./imagens/pacmanDown.xpm", &mlx->imgs[IMG_PLAY_S].width, &mlx->imgs[IMG_PLAY_S].height );
 	mlx->imgs[IMG_PLAY_A].img = mlx_xpm_file_to_image(mlx->mlx, "./imagens/pacmanLeft.xpm", &mlx->imgs[IMG_PLAY_A].width, &mlx->imgs[IMG_PLAY_A].height );
 	mlx->imgs[IMG_PLAY_W].img = mlx_xpm_file_to_image(mlx->mlx, "./imagens/pacmanUp.xpm", &mlx->imgs[IMG_PLAY_W].width, &mlx->imgs[IMG_PLAY_W].height );
-	mlx->imgs[IMG_PLAY_D].img = mlx_xpm_file_to_image(mlx->mlx, "./imagens/pacmanRight.xpm", &mlx->imgs[IMG_PLAY_D].width, &mlx->imgs[IMG_PLAY_D].height );	
+	mlx->imgs[IMG_PLAY_D].img = mlx_xpm_file_to_image(mlx->mlx, "./imagens/pacmanRight.xpm", &mlx->imgs[IMG_PLAY_D].width, &mlx->imgs[IMG_PLAY_D].height );
+	mlx->imgs[IMG_PINK].img = mlx_xpm_file_to_image(mlx->mlx, "./imagens/red.xpm", &mlx->imgs[IMG_PINK].width, &mlx->imgs[IMG_PINK].height );
+	
 }
 
 static int	main_init_load_image_base(t_mlx *mlx)
@@ -142,6 +144,8 @@ static void main_init_load_image(t_mlx *mlx)
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_COLLECT].img, w * ZOOM, height * ZOOM);
 			if (mlx->map[height][w] == 'E')
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_EXIT].img, w * ZOOM, height * ZOOM);
+			if (mlx->map[height][w] == 'G')
+				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PINK].img, w * ZOOM, height * ZOOM);
 			w++;
 		}
 		height++;
@@ -163,7 +167,7 @@ int	main(int argc, char **argv)
 	error = main_load_map(&mlx, argv);
 	map_check(&mlx);
 	mlx.mlx = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx, mlx.imap.width * ZOOM, mlx.imap.height * ZOOM, "The funland");
+	mlx.win = mlx_new_window(mlx.mlx, mlx.imap.width * ZOOM, mlx.imap.height * ZOOM, "The So Long");
 
 	//resize_img(&mlx);
 

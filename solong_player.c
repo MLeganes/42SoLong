@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 17:44:03 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/28 19:22:16 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/29 16:10:44 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void player_update(t_mlx *mlx)
 		}
 		map_update_path(mlx, mlx->player1.horizontal, mlx->player1.vertical);
 		map_update_player(mlx, new_xy[0], new_xy[1]);
+		score_steps(mlx);
 	}
 	if (mlx->map[new_xy[1]][new_xy[0]] == 'E')
 	{
@@ -66,5 +67,4 @@ void player_update(t_mlx *mlx)
 			// No close the win and write zyou win.
 			exit_game();
 	}
-	score_steps(mlx);
 }

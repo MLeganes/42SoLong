@@ -50,7 +50,7 @@ void	map_check_midline(t_mlx *mlx, char *s)
 	i = 1;
 	while (s[i] != '\0')
 	{
-		if ( s[i] != '1' && s[i] != '0' && s[i] != 'P' && s[i] != 'E' && s[i] != 'C')
+		if ( s[i] != '1' && s[i] != '0' && s[i] != 'P' && s[i] != 'E' && s[i] != 'C' && s[i] != 'G')
 			error_print_exit("[map error] Map contains an invalid entry. It must contain 0, 1, C, E and P.");
 		else
 		{		
