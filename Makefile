@@ -6,7 +6,7 @@
 #    By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 11:24:29 by amorcill          #+#    #+#              #
-#    Updated: 2021/10/29 12:52:25 by amorcill         ###   ########.fr        #
+#    Updated: 2021/10/29 14:54:18 by amorcill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,8 +50,9 @@ fclean: clean
 re: fclean $(NAME)
 
 run:
-	./so_long ./game_levels/medium.ber
-#./so_long ./game_levels/paclevel.ber
+	./so_long ./game_levels/paclevel.ber
+#	./so_long ./game_levels/large.ber
+#	./so_long ./game_levels/medium.ber
 
 makelibft:
 	make -C libft all
