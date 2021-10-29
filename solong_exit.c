@@ -2,5 +2,5 @@
 
 int  exit_game()
 {	
-	exit (EXIT_GAME);
+	exit (0);
 }
