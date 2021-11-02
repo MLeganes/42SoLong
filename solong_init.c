@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solong_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
+/*   By: x250 <x250@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 13:41:54 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/28 19:42:13 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/10/30 02:32:14 by x250             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	init_imap(t_mlx *mlx)
 {
 	mlx->imap.players = 0;
 	mlx->imap.collectibles = 0;
+	mlx->imap.ghost = 0;
 	mlx->imap.exit = 0;
 	mlx->imap.height = 0;
 	mlx->imap.width = 0;

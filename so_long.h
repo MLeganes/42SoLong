@@ -6,7 +6,7 @@
 /*   By: x250 <x250@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:18:59 by x250              #+#    #+#             */
-/*   Updated: 2021/10/29 11:26:25 by x250             ###   ########.fr       */
+/*   Updated: 2021/10/30 04:25:52 by x250             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ typedef struct s_player
 
 typedef struct s_ghost
 {
-	int			horizontal;
-	int			vertical;
+	int			x;
+	int			y;
 	int			new_x;
 	int			new_y;
 }				t_ghost;
@@ -84,6 +84,7 @@ typedef struct s_map
 {
 	int			players;
 	int			collectibles;
+	int			ghost;
 	int			exit;
 	int			height;
 	int			width;
@@ -98,7 +99,7 @@ typedef struct s_mlx
 	t_map		imap;	
 	t_img		imgs[10];
 	t_player	player1;
-	t_ghost		pink;
+	t_ghost		ghost[10];
 }				t_mlx;
 
 /*
@@ -133,7 +134,7 @@ void	collectible_decrease(t_mlx *mlx);
  * Solong error 
  */
 void	error_print_exit(char *error_msg);
-int		exit_game();
+void	exit_game(void);
 /*
  * Solong resize
  */
@@ -151,4 +152,12 @@ int		ft_count_lines(t_mlx *mlx, char **argv);
 void	score_print(t_mlx *mlx);
 void	score_steps(t_mlx *mlx);
 void	score_collectibles(t_mlx *mlx);
+/*
+ * Solong BONUS
+ */
+void	init_load_ghost(t_mlx *mlx, int x, int y);
+void	ghost_move(t_mlx *mlx);
+void	ghost_move_secondpart(t_mlx *mlx, int x, int y);
+void	ghost_update(t_ghost *ghost, int x, int y);
+void	ghost_player_crash(t_mlx *mlx, int x, int y);
 #endif

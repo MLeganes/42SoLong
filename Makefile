@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+         #
+#    By: x250 <x250@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 11:24:29 by amorcill          #+#    #+#              #
-#    Updated: 2021/10/29 14:54:18 by amorcill         ###   ########.fr        #
+#    Updated: 2021/10/30 04:14:34 by x250             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,9 @@ SRCS	= solong_main.c \
 		  solong_resize.c \
 		  solong_utils.c \
 		  solong_score.c \
+		  solong_bonus.c \
+
+		  
 
 %.o: %.c
 	$(CC) $(SNTZ) $(FLAGS) -Ilibmlx -Ilibft -c $< -o $@
