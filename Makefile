@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: x250 <x250@student.42.fr>                  +#+  +:+       +#+         #
+#    By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 11:24:29 by amorcill          #+#    #+#              #
-#    Updated: 2021/10/30 04:14:34 by x250             ###   ########.fr        #
+#    Updated: 2021/11/02 15:46:59 by amorcill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ SRCS	= solong_main.c \
 		  
 
 %.o: %.c
-	$(CC) $(SNTZ) $(FLAGS) -Ilibmlx -Ilibft -c $< -o $@
+	$(CC) $(SNTZ) $(FLAGS) -Ilibmlx -Ilibft -D BONUS=1 -c $< -o $@
 
 all: $(NAME)
 
@@ -53,7 +53,7 @@ fclean: clean
 re: fclean $(NAME)
 
 run:
-	./so_long ./game_levels/paclevel.ber
+	./so_long ./game_levels/pacman1.ber
 #	./so_long ./game_levels/large.ber
 #	./so_long ./game_levels/medium.ber
 

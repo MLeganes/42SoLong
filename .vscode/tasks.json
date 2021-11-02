@@ -16,6 +16,8 @@
                 "OpenGL",
                 "-framework",
                 "AppKit",
+				"-D",
+				"BONUS=1",
                 "${fileDirname}/*.c",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"

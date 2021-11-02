@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: x250 <x250@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:18:59 by x250              #+#    #+#             */
-/*   Updated: 2021/10/30 04:25:52 by x250             ###   ########.fr       */
+/*   Updated: 2021/11/02 18:24:31 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 # define IMG_PLAY_D 7
 # define IMG_PLAY_S 8
 # define IMG_PINK 9
+# define IMG_MAX 10
 
 typedef struct s_img
 {
@@ -96,6 +97,8 @@ typedef struct s_mlx
 	void		*mlx;
 	void		*win;
 	char		**map;
+	int			bonus;
+	int			ghost_id;
 	t_map		imap;	
 	t_img		imgs[10];
 	t_player	player1;
@@ -134,7 +137,7 @@ void	collectible_decrease(t_mlx *mlx);
  * Solong error 
  */
 void	error_print_exit(char *error_msg);
-void	exit_game(void);
+int		exit_game(t_mlx *mlx);
 /*
  * Solong resize
  */
@@ -156,8 +159,10 @@ void	score_collectibles(t_mlx *mlx);
  * Solong BONUS
  */
 void	init_load_ghost(t_mlx *mlx, int x, int y);
-void	ghost_move(t_mlx *mlx);
+int		ghost_move(t_mlx *mlx);
+int		ghost_check(t_mlx *mlx, int x, int y);
 void	ghost_move_secondpart(t_mlx *mlx, int x, int y);
-void	ghost_update(t_ghost *ghost, int x, int y);
+void	ft_move_ramdom(t_mlx *mlx);
+void	ghost_update(t_mlx *mlx, int x, int y);
 void	ghost_player_crash(t_mlx *mlx, int x, int y);
 #endif

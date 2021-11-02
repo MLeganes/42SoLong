@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solong_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: x250 <x250@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 17:44:03 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/30 04:50:23 by x250             ###   ########.fr       */
+/*   Updated: 2021/11/02 18:22:36 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	player_update(t_mlx *mlx)
 		map_update_player(mlx, new_xy[0], new_xy[1]);
 		score_steps(mlx);
 	}
-	if (BONUS == 1 && mlx->map[new_xy[1]][new_xy[0]] == 'G')
+	if (mlx->bonus == 1 && mlx->map[new_xy[1]][new_xy[0]] == 'G')
 	{
 		ghost_player_crash(mlx, new_xy[0], new_xy[1]);
 	// 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_2].img, mlx->player1.horizontal * ZOOM, mlx->player1.vertical * ZOOM);
@@ -76,8 +76,12 @@ void	player_update(t_mlx *mlx)
 	{
 		if (collectible_check(mlx) == 0)
 		// No close the win and write zyou win.
-			exit_game();
+			exit_game(mlx);
 	}
-	if (BONUS == 1)
-		ghost_move(mlx);
+	if (mlx->bonus == 1)
+	{
+		mlx_loop_hook( mlx->mlx, ghost_move, mlx);
+		//ghost_move(mlx);		
+	}
+
 }

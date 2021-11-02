@@ -3,45 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   solong_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: x250 <x250@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/30 04:47:21 by x250             ###   ########.fr       */
+/*   Updated: 2021/11/02 17:48:02 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	main_check_args(int args, char **argv)
+static void	main_check_args(int args, char **argv)
 {
-	int		error;
 	char	*ret;
-	char	aux[255];
-	int		i;
-
-	error = -1;
+	
 	if (args == 2)
 	{
 		ret = ft_strnstr(argv[1], ".ber", ft_strlen(argv[1]));
-		i = 0;
-		while (argv[1][i])
-		{
-			aux[i] = argv[1][i];
-			i++;
-		}
-		if (ret != NULL && ret[4] == '\0')
-		{
-			error = 2;
-		}
+		if (ret == NULL)
+			error_print_exit("[args error] Error to read arguments!");	
+		return ;
 	}
-	return (error);
+	else
+	{
+		error_print_exit("[args error] Exceded the number of arguments!");		
+	}
 }
 
 /*
  * Load the map.ber. Read the file and save the lines.
  */
 
-static int	main_load_map(t_mlx *mlx, char **argv)
+static void	main_load_map(t_mlx *mlx, char **argv)
 {
 	int		lines;
 	char	*line;
@@ -51,10 +43,10 @@ static int	main_load_map(t_mlx *mlx, char **argv)
 	lines = mlx->imap.height;
 	mlx->map = (char **)malloc((lines + 1) * (sizeof(char *)));
 	if (mlx->map == NULL)
-		return (-8);
-	fd = open(argv[1], O_RDONLY);
+		error_print_exit("[malloc error] Error to allocate memory with malloc!");	
+	fd = open(argv[1], O_RDONLY);	
 	if (fd <= 0)
-		return (-2);
+		error_print_exit("[map error] Error to open map file! Check the path to the map.");	
 	line = get_next_line(fd);
 	lines = 0;
 	while (line)
@@ -66,8 +58,7 @@ static int	main_load_map(t_mlx *mlx, char **argv)
 	}
 	mlx->map[lines] = NULL;
 	if (close(fd) < 0)
-		return (-4);
-	return (1);
+		error_print_exit("[map error] Error to close map file!");
 }
 
 static void	main_init_load_xpmfile(t_mlx *mlx)
@@ -160,7 +151,7 @@ static void	main_init_load_image(t_mlx *mlx)
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_COLLECT].img, w * ZOOM, height * ZOOM);
 			if (mlx->map[height][w] == 'E')
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_EXIT].img, w * ZOOM, height * ZOOM);
-			if (BONUS == 1 && mlx->map[height][w] == 'G')
+			if (mlx->bonus == 1 && mlx->map[height][w] == 'G')
 			{
 				init_load_ghost(mlx, w, height);
 				//mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PINK].img, w * ZOOM, height * ZOOM);
@@ -174,11 +165,11 @@ static void	main_init_load_image(t_mlx *mlx)
 int	main(int argc, char **argv)
 {
 	t_mlx	mlx;
-	int		error;
-
+	
+	mlx.bonus = BONUS;	
 	main_init_mlx(&mlx);
-	error = main_check_args(argc, argv);
-	error = main_load_map(&mlx, argv);
+	main_check_args(argc, argv);
+	main_load_map(&mlx, argv);
 	map_check(&mlx);
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, mlx.imap.width * ZOOM, mlx.imap.height * ZOOM, "The So Long");

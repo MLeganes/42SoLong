@@ -50,17 +50,26 @@ void	map_check_midline(t_mlx *mlx, char *s)
 	i = 1;
 	while (s[i] != '\0')
 	{
-		if ( s[i] != '1' && s[i] != '0' && s[i] != 'P' && s[i] != 'E' && s[i] != 'C' && s[i] != 'G')
-			error_print_exit("[map error] Map contains an invalid entry. It must contain 0, 1, C, E and P.");
-		else
-		{		
-			if (s[i] == 'P')
-				mlx->imap.players++;
-			if (s[i] == 'E')
-				mlx->imap.exit++;
-			if (s[i] == 'C')
-				collectible_increase(mlx);			
+		if (mlx->bonus == 0)
+		{
+			if ( s[i] != '1' && s[i] != '0' && s[i] != 'P' && s[i] != 'E' && s[i] != 'C')
+			{
+				error_print_exit("[map error] Map contains an invalid entry. It must contain 0, 1, C, E and P.");
+			}
 		}
+		if (mlx->bonus == 1)
+		{
+			if ( s[i] != '1' && s[i] != '0' && s[i] != 'P' && s[i] != 'E' && s[i] != 'C' && s[i] != 'G')
+			{
+				error_print_exit("[map error] Map contains an invalid entry. It must contain 0, 1, C, E and P.");
+			}
+		}
+		if (s[i] == 'P')
+			mlx->imap.players++;
+		if (s[i] == 'E')
+			mlx->imap.exit++;
+		if (s[i] == 'C')
+			collectible_increase(mlx);
 		i++;
 	}
 	return ;
