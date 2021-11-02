@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/30 04:19:20 by x250              #+#    #+#             */
-/*   Updated: 2021/11/02 18:24:21 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/02 18:28:53 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ghost_move(t_mlx *mlx)
 
 	ghosts = mlx->imap.ghost;
 	i = 0;
-	sleep(1000);
+	//sleep(1000);
 	while (i < ghosts)
 	{
 		mlx->ghost_id = i;

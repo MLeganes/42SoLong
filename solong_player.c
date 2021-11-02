@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 17:44:03 by amorcill          #+#    #+#             */
-/*   Updated: 2021/11/02 18:22:36 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/02 18:28:42 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ void	player_update(t_mlx *mlx)
 	}
 	if (mlx->bonus == 1)
 	{
-		mlx_loop_hook( mlx->mlx, ghost_move, mlx);
-		//ghost_move(mlx);		
+		//mlx_loop_hook( mlx->mlx, ghost_move, mlx);
+		ghost_move(mlx);		
 	}
 
 }
