@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/30 04:19:20 by x250              #+#    #+#             */
-/*   Updated: 2021/11/02 18:28:53 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/04 10:38:18 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,26 @@ void	ghost_player_crash(t_mlx *mlx, int x, int y)
 	mlx->map[y][x] = '0';
 	mlx->player1.lives = 0;
 	score_print(mlx);
-	mlx_string_put(mlx->mlx, mlx->win, (mlx->imap.height / 2) * ZOOM,
-		(mlx->imap.width / 2) * ZOOM, 0x00FFFFFFF, "GAME OVER");
+	
+	game_over(mlx);
+}
+
+void game_over(t_mlx *mlx)
+{
+	int x;
+	int y;
+
+	x = (mlx->imap.width) / 2;
+	y = (mlx->imap.height) / 2;
+	
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_2].img, (x - 1) * ZOOM, (y - 1) * ZOOM);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_2].img, (x) * ZOOM, (y - 1) * ZOOM);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_2].img, (x + 1) * ZOOM, (y - 1) * ZOOM);
+	
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_2].img, (x - 1) * ZOOM, (y) * ZOOM);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_2].img, (x) * ZOOM, (y) * ZOOM);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_2].img, (x + 1) * ZOOM, (y) * ZOOM);
+	
+	mlx_string_put(mlx->mlx, mlx->win, ((mlx->imap.width) / 2) * ZOOM,
+		((mlx->imap.height) / 2) * ZOOM, 0x00FFFFFFF, "GAME OVER");
 }

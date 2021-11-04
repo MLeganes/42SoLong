@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:18:59 by x250              #+#    #+#             */
-/*   Updated: 2021/11/02 18:24:31 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/04 10:37:05 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,4 +165,5 @@ void	ghost_move_secondpart(t_mlx *mlx, int x, int y);
 void	ft_move_ramdom(t_mlx *mlx);
 void	ghost_update(t_mlx *mlx, int x, int y);
 void	ghost_player_crash(t_mlx *mlx, int x, int y);
+void	game_over(t_mlx *mlx);
 #endif
