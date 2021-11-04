@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/30 04:19:20 by x250              #+#    #+#             */
-/*   Updated: 2021/11/04 12:51:49 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/04 18:53:23 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,30 @@ int	ghost_move(t_mlx *mlx)
 {
 	int	i;
 	int	ghosts;
-
-	ghosts = mlx->imap.ghost;
-	i = 0;
-	//sleep(1000);
-	while (i < ghosts)
-	{
-		mlx->ghost_id = i;
-		ft_move_ramdom(mlx);
-		// if (ghost_check(mlx, mlx->ghost[i].x + 1, mlx->ghost[i].y))
-		// 	ghost_move_secondpart(mlx, mlx->ghost[i].x + 1, mlx->ghost[i].y);			
-		// else if (ghost_check(mlx, mlx->ghost[i].x, mlx->ghost[i].y + 1))				
-		// 	ghost_move_secondpart(mlx, mlx->ghost[i].x, mlx->ghost[i].y + 1);			
-		// else if (ghost_check(mlx, mlx->ghost[i].x - 1, mlx->ghost[i].y))
-		// 	ghost_move_secondpart(mlx, mlx->ghost[i].x - 1, mlx->ghost[i].y);			
-		// else if (ghost_check(mlx, mlx->ghost[i].x, mlx->ghost[i].y + 1))
-		// 	ghost_move_secondpart(mlx, mlx->ghost[i].x, mlx->ghost[i].y + 1);		
-		i++;
+	static int timer;
+	
+	timer++;
+	printf("timer %d \n", timer);
+	if( timer > 1000 && (mlx->player1.game_on == 1 || mlx->player1.lives > 1))
+	{	
+		ghosts = mlx->imap.ghost;
+		i = 0;
+		//sleep(1000);
+		while (i < ghosts)
+		{
+			mlx->ghost_id = i;
+			ft_move_ramdom(mlx);
+			// if (ghost_check(mlx, mlx->ghost[i].x + 1, mlx->ghost[i].y))
+			// 	ghost_move_secondpart(mlx, mlx->ghost[i].x + 1, mlx->ghost[i].y);			
+			// else if (ghost_check(mlx, mlx->ghost[i].x, mlx->ghost[i].y + 1))				
+			// 	ghost_move_secondpart(mlx, mlx->ghost[i].x, mlx->ghost[i].y + 1);			
+			// else if (ghost_check(mlx, mlx->ghost[i].x - 1, mlx->ghost[i].y))
+			// 	ghost_move_secondpart(mlx, mlx->ghost[i].x - 1, mlx->ghost[i].y);			
+			// else if (ghost_check(mlx, mlx->ghost[i].x, mlx->ghost[i].y + 1))
+			// 	ghost_move_secondpart(mlx, mlx->ghost[i].x, mlx->ghost[i].y + 1);		
+			i++;
+		}
+		timer = 0;
 	}
 	return 0;
 }
@@ -66,15 +73,15 @@ void ft_move_ramdom(t_mlx *mlx)
 	}
 	if (nb % 4 == 1)
 	{
-		if (ghost_check(mlx, mlx->ghost[i].x, mlx->ghost[i].y + 1))				
-			ghost_move_secondpart(mlx, mlx->ghost[i].x, mlx->ghost[i].y + 1);	
+		if (ghost_check(mlx, mlx->ghost[i].x, mlx->ghost[i].y - 1))				
+			ghost_move_secondpart(mlx, mlx->ghost[i].x, mlx->ghost[i].y - 1);	
 	}
 	if (nb % 4 == 2)
 	{
 		if (ghost_check(mlx, mlx->ghost[i].x - 1, mlx->ghost[i].y))
 			ghost_move_secondpart(mlx, mlx->ghost[i].x - 1, mlx->ghost[i].y);
 	}
-	if (nb % 4 > 3)
+	if (nb % 4 == 3)
 	{
 		if (ghost_check(mlx, mlx->ghost[i].x, mlx->ghost[i].y + 1))
 			ghost_move_secondpart(mlx, mlx->ghost[i].x, mlx->ghost[i].y + 1);	
@@ -126,6 +133,7 @@ void	ghost_player_crash(t_mlx *mlx, int x, int y)
 		x * ZOOM, y * ZOOM);
 	mlx->map[y][x] = '0';
 	mlx->player1.lives = 0;
+	mlx->player1.game_on = 0;
 	score_print(mlx);
 	
 	game_over(mlx);
