@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/11/04 20:47:23 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/04 20:58:48 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,42 +33,15 @@ static void	main_check_args(int args, char **argv)
  * Load the map.ber. Read the file and save the lines.
  */
 
-static void	main_load_map(t_mlx *mlx, char **argv)
-{
-	int		lines;
-	char	*line;
-	int		fd;
 
-	ft_count_lines(mlx, argv);
-	lines = mlx->imap.height;
-	mlx->map = (char **)malloc((lines + 1) * (sizeof(char *)));
-	if (mlx->map == NULL)
-		error_print_exit
-		("[malloc error] Error to allocate memory with malloc!");
-	fd = open(argv[1], O_RDONLY);
-	if (fd <= 0)
-		error_print_exit
-		("[map error] Error to open map file! Check the path to the map.");
-	line = get_next_line(fd);
-	lines = 0;
-	while (line)
-	{
-		ft_remove_eol(line);
-		mlx->map[lines] = line;
-		line = get_next_line(fd);
-		lines++;
-	}
-	mlx->map[lines] = NULL;
-}
 
 static void	main_init_load_xpmfile(t_mlx *mlx)
 {
 	main_load_image_map(mlx);
 	main_load_image_player(mlx);
 	if (mlx->bonus == 1)
-		load_image_ghost(mlx);	
+		load_image_ghost(mlx);
 }
-
 
 static int	main_init_load_image_base(t_mlx *mlx)
 {

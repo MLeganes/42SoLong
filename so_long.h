@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:18:59 by x250              #+#    #+#             */
-/*   Updated: 2021/11/04 20:53:35 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/04 20:59:53 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ typedef struct s_mlx
  * Solong main init
  */
 void	main_init_mlx(t_mlx *mlx);
+void	main_load_map(t_mlx *mlx, char **argv);
 void	main_load_image_map(t_mlx *mlx);
 void	main_load_image_player(t_mlx *mlx);
 /*

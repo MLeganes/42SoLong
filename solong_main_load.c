@@ -6,11 +6,39 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 20:41:00 by amorcill          #+#    #+#             */
-/*   Updated: 2021/11/04 20:44:11 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/04 20:59:15 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	main_load_map(t_mlx *mlx, char **argv)
+{
+	int		lines;
+	char	*line;
+	int		fd;
+
+	ft_count_lines(mlx, argv);
+	lines = mlx->imap.height;
+	mlx->map = (char **)malloc((lines + 1) * (sizeof(char *)));
+	if (mlx->map == NULL)
+		error_print_exit
+		("[malloc error] Error to allocate memory with malloc!");
+	fd = open(argv[1], O_RDONLY);
+	if (fd <= 0)
+		error_print_exit
+		("[map error] Error to open map file! Check the path to the map.");
+	line = get_next_line(fd);
+	lines = 0;
+	while (line)
+	{
+		ft_remove_eol(line);
+		mlx->map[lines] = line;
+		line = get_next_line(fd);
+		lines++;
+	}
+	mlx->map[lines] = NULL;
+}
 
 void main_load_image_map(t_mlx *mlx)
 {
