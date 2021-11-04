@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:18:59 by x250              #+#    #+#             */
-/*   Updated: 2021/11/04 10:37:05 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/04 12:35:42 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_player
 	int			steps;
 	int			collects;
 	int			lives;
+	int			game_on;
 }				t_player;
 
 typedef struct s_ghost
@@ -138,6 +139,7 @@ void	collectible_decrease(t_mlx *mlx);
  */
 void	error_print_exit(char *error_msg);
 int		exit_game(t_mlx *mlx);
+void	game_win(t_mlx *mlx);
 /*
  * Solong resize
  */

@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 17:44:03 by amorcill          #+#    #+#             */
-/*   Updated: 2021/11/02 18:28:42 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/04 12:53:50 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,16 @@ void	player_update(t_mlx *mlx)
 	if (mlx->map[new_xy[1]][new_xy[0]] == 'E')
 	{
 		if (collectible_check(mlx) == 0)
-		// No close the win and write zyou win.
-			exit_game(mlx);
+		{
+			mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_2].img,
+			mlx->player1.horizontal * ZOOM, mlx->player1.vertical * ZOOM);
+			mlx->player1.game_on = 0;
+			game_win(mlx);			
+		}			
 	}
 	if (mlx->bonus == 1)
 	{
-		//mlx_loop_hook( mlx->mlx, ghost_move, mlx);
+		//mlx_loop_hook( mlx->win, ghost_move, mlx);
 		ghost_move(mlx);		
 	}
-
 }

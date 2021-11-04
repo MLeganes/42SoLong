@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 18:38:15 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/29 16:16:44 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/04 12:48:27 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ void	score_print(t_mlx *mlx)
 void	score_steps(t_mlx *mlx)
 {
 	mlx->player1.steps++;
-	write(1, "Steps: ", 7);
+	//write(1, "Steps: ", 7);
 	ft_putnbr_fd(mlx->player1.steps, 1);
-	write(1, "\n", 1);
+	//write(1, "\n", 1);
 	score_print(mlx);
 }
 
 void	score_collectibles(t_mlx *mlx)
 {
 	mlx->player1.collects++;
-	write(1, "Score: ", 7);
+	//write(1, "Score: ", 7);
 	ft_putnbr_fd(mlx->player1.collects, 1);
-	write(1, "\n", 1);
+	//write(1, "\n", 1);
 	score_print(mlx);
 }

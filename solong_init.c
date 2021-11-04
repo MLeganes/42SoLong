@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solong_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: x250 <x250@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 13:41:54 by amorcill          #+#    #+#             */
-/*   Updated: 2021/10/30 02:32:14 by x250             ###   ########.fr       */
+/*   Updated: 2021/11/04 12:36:11 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	init_player(t_mlx *mlx)
 	mlx->player1.steps = 0;
 	mlx->player1.collects = 0;
 	mlx->player1.lives = 1;
+	mlx->player1.game_on = 1;
 }
 
 void	main_init_mlx(t_mlx *mlx)

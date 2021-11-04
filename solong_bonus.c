@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/30 04:19:20 by x250              #+#    #+#             */
-/*   Updated: 2021/11/04 10:38:18 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/04 12:51:49 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void ft_move_ramdom(t_mlx *mlx)
 
 	nb = rand();
 	i = mlx->ghost_id;
+	printf("ramdom move \n");
 	if ((nb % 4) == 0)
 	{
 		if (ghost_check(mlx, mlx->ghost[i].x + 1, mlx->ghost[i].y))
