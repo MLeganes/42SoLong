@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/11/02 17:48:02 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/04 20:47:23 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 static void	main_check_args(int args, char **argv)
 {
 	char	*ret;
-	
+
 	if (args == 2)
 	{
 		ret = ft_strnstr(argv[1], ".ber", ft_strlen(argv[1]));
 		if (ret == NULL)
-			error_print_exit("[args error] Error to read arguments!");	
+			error_print_exit("[args error] Error to read arguments!");
 		return ;
 	}
 	else
 	{
-		error_print_exit("[args error] Exceded the number of arguments!");		
+		error_print_exit("[args error] Exceded the number of arguments!");
 	}
 }
 
@@ -43,10 +43,12 @@ static void	main_load_map(t_mlx *mlx, char **argv)
 	lines = mlx->imap.height;
 	mlx->map = (char **)malloc((lines + 1) * (sizeof(char *)));
 	if (mlx->map == NULL)
-		error_print_exit("[malloc error] Error to allocate memory with malloc!");	
-	fd = open(argv[1], O_RDONLY);	
+		error_print_exit
+		("[malloc error] Error to allocate memory with malloc!");
+	fd = open(argv[1], O_RDONLY);
 	if (fd <= 0)
-		error_print_exit("[map error] Error to open map file! Check the path to the map.");	
+		error_print_exit
+		("[map error] Error to open map file! Check the path to the map.");
 	line = get_next_line(fd);
 	lines = 0;
 	while (line)
@@ -57,39 +59,16 @@ static void	main_load_map(t_mlx *mlx, char **argv)
 		lines++;
 	}
 	mlx->map[lines] = NULL;
-	if (close(fd) < 0)
-		error_print_exit("[map error] Error to close map file!");
 }
 
 static void	main_init_load_xpmfile(t_mlx *mlx)
 {
-	mlx->imgs[IMG_PATH_1].img = mlx_xpm_file_to_image(mlx->mlx,
-			"./imagens/path.xpm", &mlx->imgs[IMG_PATH_1].width,	&mlx->imgs[IMG_PATH_1].height);
-	mlx->imgs[IMG_PATH_2].img = mlx_xpm_file_to_image(mlx->mlx,
-			"./imagens/back.xpm", &mlx->imgs[IMG_PATH_2].width,
-			&mlx->imgs[IMG_PATH_2].height);
-	mlx->imgs[IMG_WALL].img = mlx_xpm_file_to_image(mlx->mlx,
-			"./imagens/wall.xpm", &mlx->imgs[IMG_WALL].width,
-			&mlx->imgs[IMG_WALL].height);
-	mlx->imgs[IMG_EXIT].img = mlx_xpm_file_to_image(mlx->mlx,
-			"./imagens/exit.xpm", &mlx->imgs[IMG_EXIT].width,
-			&mlx->imgs[IMG_EXIT].height);
-	mlx->imgs[IMG_COLLECT].img = mlx_xpm_file_to_image(mlx->mlx,
-			"./imagens/button.xpm", &mlx->imgs[IMG_COLLECT].width,
-			&mlx->imgs[IMG_COLLECT].height);
-	mlx->imgs[IMG_PLAY_S].img = mlx_xpm_file_to_image(mlx->mlx,
-			"./imagens/pacmanDown.xpm", &mlx->imgs[IMG_PLAY_S].width,
-			&mlx->imgs[IMG_PLAY_S].height);
-	mlx->imgs[IMG_PLAY_A].img = mlx_xpm_file_to_image(mlx->mlx,
-			"./imagens/pacmanLeft.xpm", &mlx->imgs[IMG_PLAY_A].width,
-			&mlx->imgs[IMG_PLAY_A].height);
-	mlx->imgs[IMG_PLAY_W].img = mlx_xpm_file_to_image(mlx->mlx,
-		"./imagens/pacmanUp.xpm", &mlx->imgs[IMG_PLAY_W].width, &mlx->imgs[IMG_PLAY_W].height);
-	mlx->imgs[IMG_PLAY_D].img = mlx_xpm_file_to_image(mlx->mlx,
-		"./imagens/pacmanRight.xpm", &mlx->imgs[IMG_PLAY_D].width, &mlx->imgs[IMG_PLAY_D].height);
-	mlx->imgs[IMG_PINK].img = mlx_xpm_file_to_image(mlx->mlx,
-		"./imagens/red.xpm", &mlx->imgs[IMG_PINK].width, &mlx->imgs[IMG_PINK].height);
+	main_load_image_map(mlx);
+	main_load_image_player(mlx);
+	if (mlx->bonus == 1)
+		load_image_ghost(mlx);	
 }
+
 
 static int	main_init_load_image_base(t_mlx *mlx)
 {
@@ -166,14 +145,13 @@ int	main(int argc, char **argv)
 {
 	t_mlx	mlx;
 	
-	mlx.bonus = BONUS;	
+	mlx.bonus = BONUS;
 	main_init_mlx(&mlx);
 	main_check_args(argc, argv);
 	main_load_map(&mlx, argv);
 	map_check(&mlx);
 	mlx.mlx = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx, mlx.imap.width * ZOOM, mlx.imap.height * ZOOM, "The So Long");
-	//resize_img(&mlx);
+	mlx.win = mlx_new_window(mlx.mlx, mlx.imap.width * ZOOM, mlx.imap.height * ZOOM, mlx.name);
 	main_init_load_xpmfile(&mlx);
 	main_init_load_image(&mlx);
 	mlx_hook(mlx.win, 2, 1L << 2, key_events, &mlx);

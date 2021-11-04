@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:18:59 by x250              #+#    #+#             */
-/*   Updated: 2021/11/04 12:35:42 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/04 20:53:35 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,11 @@ typedef struct s_mlx
 }				t_mlx;
 
 /*
- * Solong init
+ * Solong main init
  */
 void	main_init_mlx(t_mlx *mlx);
+void	main_load_image_map(t_mlx *mlx);
+void	main_load_image_player(t_mlx *mlx);
 /*
  * Solong events
  */
@@ -160,6 +162,7 @@ void	score_collectibles(t_mlx *mlx);
 /*
  * Solong BONUS
  */
+void	load_image_ghost(t_mlx *mlx);
 void	init_load_ghost(t_mlx *mlx, int x, int y);
 int		ghost_move(t_mlx *mlx);
 int		ghost_check(t_mlx *mlx, int x, int y);

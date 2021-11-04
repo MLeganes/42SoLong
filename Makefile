@@ -6,7 +6,7 @@
 #    By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 11:24:29 by amorcill          #+#    #+#              #
-#    Updated: 2021/11/04 17:55:30 by amorcill         ###   ########.fr        #
+#    Updated: 2021/11/04 20:49:01 by amorcill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SNTZ	= -fsanitize=address -fno-omit-frame-pointer  -static-libsan
 #SNTZ	= 
 OBJS	= $(patsubst %.c, %.o, $(SRCS))
 SRCS	= solong_main.c \
+		  solong_main_load.c \
 		  solong_init.c \
 		  solong_key_events.c \
 		  solong_map.c \
@@ -28,8 +29,8 @@ SRCS	= solong_main.c \
 		  solong_utils.c \
 		  solong_score.c \
 		  solong_bonus.c \
-
-		  
+		  solong_load_bonus.c \
+  
 
 %.o: %.c
 	$(CC) $(SNTZ) $(FLAGS) -Ilibmlx -Ilibft -D BONUS=1 -c $< -o $@
