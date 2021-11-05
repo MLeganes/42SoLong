@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile_leaks                                     :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 11:24:29 by amorcill          #+#    #+#              #
-#    Updated: 2021/10/27 18:09:37 by amorcill         ###   ########.fr        #
+#    Updated: 2021/11/05 14:20:51 by amorcill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ fclean: clean
 re: fclean $(NAME)
 
 run:
-	./so_long ./game_levels/paclevel.ber
+	./so_long ./maps/paclevel.ber
 
 makelibft:
 	make -C libft all
@@ -78,7 +78,7 @@ $(NAME_LK): makelibft makelibmlx $(OBJS)
 relk: fclean $(NAME_LK)
 
 runlk:
-	./so_long_leaks ./game_levels/paclevel.ber
+	./so_long_leaks ./maps/paclevel.ber
 
 
 #### To avoid warnings

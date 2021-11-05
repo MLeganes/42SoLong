@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${fileDirname}/${fileBasenameNoExtension}",
-			"args": ["game_levels/pacman1.ber"],
+			"args": ["maps/pacman1.ber"],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
 			"environment": [],
