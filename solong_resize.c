@@ -6,17 +6,11 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 16:04:27 by amorcill          #+#    #+#             */
-/*   Updated: 2021/11/04 20:03:56 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/05 16:01:56 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-
-// void resize_check(t_mlx *mainmlx)
-// {
-	
-// }
 
 void resize_img(t_mlx *mainmlx)
 {
@@ -31,7 +25,7 @@ void resize_img(t_mlx *mainmlx)
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
 	
-	newimg.img = mlx_xpm_file_to_image(mlx, "./imagens/pacmanRight.xpm", &newimg.width, &newimg.height);
+	newimg.img = mlx_xpm_file_to_image(mlx, "./imgs/pacmanRight.xpm", &newimg.width, &newimg.height);
 	newimg.addr = mlx_get_data_addr(newimg.img, &newimg.bits_per_pixel, &newimg.line_length,
 								&newimg.endian);
 				

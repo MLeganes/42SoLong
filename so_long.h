@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:18:59 by x250              #+#    #+#             */
-/*   Updated: 2021/11/05 13:45:33 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/05 16:01:08 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,8 +133,6 @@ void	map_load_path2(t_mlx *mlx, int w, int h);
 void	map_load_wall(t_mlx *mlx, int w, int h);
 void	map_load_player(t_mlx *mlx, int w, int h);
 void	map_load_init_player(t_mlx *mlx, int w, int h);
-//void	map_load_collect(t_mlx *mlx, int w, int h);
-//void	map_load_exit(t_mlx *mlx, int w, int h);
 /*
  * Solong map
  */
@@ -178,8 +176,10 @@ void	score_collectibles(t_mlx *mlx);
 /*
  * Solong BONUS
  */
-void	load_image_ghost(t_mlx *mlx);
 void	init_load_ghost(t_mlx *mlx, int x, int y);
+void	load_image_ghost(t_mlx *mlx);
+void	load_ghost(t_mlx *mlx, int x, int y);
+
 int		ghost_move(t_mlx *mlx);
 int		ghost_check(t_mlx *mlx, int x, int y);
 void	ghost_move_secondpart(t_mlx *mlx, int x, int y);
