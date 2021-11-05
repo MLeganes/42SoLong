@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:18:59 by x250              #+#    #+#             */
-/*   Updated: 2021/11/04 20:59:53 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/05 13:45:33 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,16 @@ void	player_move_d(t_mlx *mlx);
 void	player_move_w(t_mlx *mlx);
 void	player_update(t_mlx *mlx);
 /*
+ * Solong map load
+ */
+void	map_load_path1(t_mlx *mlx, int w, int h);
+void	map_load_path2(t_mlx *mlx, int w, int h);
+void	map_load_wall(t_mlx *mlx, int w, int h);
+void	map_load_player(t_mlx *mlx, int w, int h);
+void	map_load_init_player(t_mlx *mlx, int w, int h);
+//void	map_load_collect(t_mlx *mlx, int w, int h);
+//void	map_load_exit(t_mlx *mlx, int w, int h);
+/*
  * Solong map
  */
 void	map_check(t_mlx *mlx);
@@ -134,6 +144,7 @@ void	map_update_player(t_mlx *mlx, int x, int y);
 /*
  * Solong collectible 
  */
+void	collectible_load(t_mlx *mlx, int w, int h);
 void	collectible_increase(t_mlx *mlx);
 int		collectible_check(t_mlx *mlx);
 void	collectible_decrease(t_mlx *mlx);
@@ -141,6 +152,10 @@ void	collectible_decrease(t_mlx *mlx);
  * Solong error 
  */
 void	error_print_exit(char *error_msg);
+/*
+ * Solong exit 
+ */
+void	exit_load(t_mlx *mlx, int w, int h);
 int		exit_game(t_mlx *mlx);
 void	game_win(t_mlx *mlx);
 /*

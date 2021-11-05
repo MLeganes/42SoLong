@@ -6,7 +6,7 @@
 #    By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 11:24:29 by amorcill          #+#    #+#              #
-#    Updated: 2021/11/05 11:47:46 by amorcill         ###   ########.fr        #
+#    Updated: 2021/11/05 14:00:58 by amorcill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS	= solong_main.c \
 		  solong_init.c \
 		  solong_key_events.c \
 		  solong_map.c \
+		  solong_map_load.c \
 		  solong_player.c \
 		  solong_exit.c \
 		  solong_collectible.c \
@@ -33,7 +34,7 @@ SRCS	= solong_main.c \
   
 
 %.o: %.c
-	$(CC) $(SNTZ) $(FLAGS) -Ilibmlx -Ilibft -D BONUS=1 -c $< -o $@
+	$(CC) $(SNTZ) $(FLAGS) -Ilibmlx -Ilibft -D BONUS=0 -c $< -o $@
 
 all: $(NAME)
 
@@ -54,7 +55,7 @@ fclean: clean
 re: fclean $(NAME)
 
 run:
-	./so_long ./game_levels/pacman2b.ber
+	./so_long ./game_levels/pacman2.ber
 		
 #	./so_long ./game_levels/pacman1b.ber
 #	./so_long ./game_levels/large.ber

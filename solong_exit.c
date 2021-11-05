@@ -1,5 +1,11 @@
 #include "so_long.h"
 
+void	exit_load(t_mlx *mlx, int w, int h)
+{
+	mlx_put_image_to_window(mlx->mlx, mlx->win,
+		mlx->imgs[IMG_EXIT].img, w * ZOOM, h * ZOOM);
+}
+
 int	exit_game(t_mlx *mlx)
 {
 	int i;

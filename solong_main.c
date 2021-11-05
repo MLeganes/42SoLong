@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/11/04 20:58:48 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/05 14:01:49 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,6 @@ static void	main_check_args(int args, char **argv)
 		error_print_exit("[args error] Exceded the number of arguments!");
 	}
 }
-
-/*
- * Load the map.ber. Read the file and save the lines.
- */
-
-
 
 static void	main_init_load_xpmfile(t_mlx *mlx)
 {
@@ -57,8 +51,7 @@ static int	main_init_load_image_base(t_mlx *mlx)
 		while (w < mlx->imap.width)
 		{
 			aux = mlx->map[height][w];
-			mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_1]
-				.img, w * ZOOM, height * ZOOM);
+			map_load_path1(mlx, w, height);
 			w++;
 		}
 		height++;
@@ -68,63 +61,45 @@ static int	main_init_load_image_base(t_mlx *mlx)
 
 static void	main_init_load_image(t_mlx *mlx)
 {
-	int		height;
-	int		w;
-	char	aux;
+	int		wh[2];
 
 	main_init_load_image_base(mlx);
-	height = 0;
-	while (height < mlx->imap.height)
+	wh[1] = 0;
+	while (wh[1] < mlx->imap.height)
 	{
-		w = 0;
-		while (w < mlx->imap.width)
+		wh[0] = 0;
+		while (wh[0] < mlx->imap.width)
 		{
-			aux = mlx->map[height][w];
-			if (mlx->map[height][w] == '0')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_1].img, w * ZOOM, height * ZOOM);
-			if (mlx->map[height][w] == '1')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_WALL].img, w * ZOOM, height * ZOOM);
-			if (mlx->map[height][w] == 'P')
-			{
-				if (mlx->player1.printed == 0)
-				{
-					mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PLAY_D].img, w * ZOOM, height * ZOOM);
-					mlx->player1.horizontal = w;
-					mlx->player1.vertical = height;
-					mlx->player1.printed = 1;
-				}
-				else
-				{
-					mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_1].img, w * ZOOM, height * ZOOM);
-					mlx->map[height][w] = '0';
-				}
-			}
-			if (mlx->map[height][w] == 'C')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_COLLECT].img, w * ZOOM, height * ZOOM);
-			if (mlx->map[height][w] == 'E')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_EXIT].img, w * ZOOM, height * ZOOM);
-			if (mlx->bonus == 1 && mlx->map[height][w] == 'G')
-			{
-				init_load_ghost(mlx, w, height);
-				//mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PINK].img, w * ZOOM, height * ZOOM);
-			}
-			w++;
+			if (mlx->map[wh[1]][wh[0]] == '0')
+				map_load_path1(mlx, wh[0], wh[1]);
+			if (mlx->map[wh[1]][wh[0]] == '1')
+				map_load_wall(mlx, wh[0], wh[1]);
+			if (mlx->map[wh[1]][wh[0]] == 'P')
+				map_load_init_player(mlx, wh[0], wh[1]);
+			if (mlx->map[wh[1]][wh[0]] == 'C')
+				collectible_load(mlx, wh[0], wh[1]);
+			if (mlx->map[wh[1]][wh[0]] == 'E')
+				exit_load(mlx, wh[0], wh[1]);
+			if (mlx->bonus == 1 && mlx->map[wh[1]][wh[0]] == 'G')
+				init_load_ghost(mlx, wh[0], wh[1]);
+			wh[0]++;
 		}
-		height++;
+		wh[1]++;
 	}
 }
 
 int	main(int argc, char **argv)
 {
 	t_mlx	mlx;
-	
+
 	mlx.bonus = BONUS;
 	main_init_mlx(&mlx);
 	main_check_args(argc, argv);
 	main_load_map(&mlx, argv);
 	map_check(&mlx);
 	mlx.mlx = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx, mlx.imap.width * ZOOM, mlx.imap.height * ZOOM, mlx.name);
+	mlx.win = mlx_new_window
+		(mlx.mlx, mlx.imap.width * ZOOM, mlx.imap.height * ZOOM, mlx.name);
 	main_init_load_xpmfile(&mlx);
 	main_init_load_image(&mlx);
 	mlx_hook(mlx.win, 2, 1L << 2, key_events, &mlx);

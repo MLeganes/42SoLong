@@ -17,3 +17,8 @@ void	collectible_decrease(t_mlx *mlx)
 	mlx->imap.collectibles--;
 	score_collectibles(mlx);
 }
+void	collectible_load(t_mlx *mlx, int w, int h)
+{
+	mlx_put_image_to_window(mlx->mlx, mlx->win,
+		mlx->imgs[IMG_COLLECT].img, w * ZOOM, h * ZOOM);
+}

@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 17:44:03 by amorcill          #+#    #+#             */
-/*   Updated: 2021/11/04 16:58:19 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/05 13:41:11 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,9 @@ void	player_update(t_mlx *mlx)
 	{
 		if (collectible_check(mlx) == 0)
 		{
-			mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_2].img,
-			mlx->player1.horizontal * ZOOM, mlx->player1.vertical * ZOOM);
+			map_load_path2(mlx, mlx->player1.horizontal, mlx->player1.vertical);
+			// mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_2].img,
+			// mlx->player1.horizontal * ZOOM, mlx->player1.vertical * ZOOM);
 			mlx->player1.game_on = 0;
 			game_win(mlx);			
 		}			
