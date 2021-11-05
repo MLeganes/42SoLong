@@ -6,7 +6,7 @@
 #    By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 11:24:29 by amorcill          #+#    #+#              #
-#    Updated: 2021/11/05 14:20:20 by amorcill         ###   ########.fr        #
+#    Updated: 2021/11/05 14:22:02 by amorcill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRCS	= solong_main.c \
   
 
 %.o: %.c
-	$(CC) $(SNTZ) $(FLAGS) -Ilibmlx -Ilibft -D BONUS=0 -c $< -o $@
+	$(CC) $(SNTZ) $(FLAGS) -Ilibmlx -Ilibft -D BONUS=1 -c $< -o $@
 
 all: $(NAME)
 
@@ -55,7 +55,7 @@ fclean: clean
 re: fclean $(NAME)
 
 run:
-	./so_long ./maps/pacman2.ber
+	./so_long ./maps/pacman2b.ber
 		
 makelibft:
 	make -C libft all
