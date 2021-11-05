@@ -6,7 +6,7 @@
 #    By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 11:24:29 by amorcill          #+#    #+#              #
-#    Updated: 2021/11/04 20:49:01 by amorcill         ###   ########.fr        #
+#    Updated: 2021/11/05 11:47:46 by amorcill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,9 @@ fclean: clean
 re: fclean $(NAME)
 
 run:
-	./so_long ./game_levels/pacman1b.ber
+	./so_long ./game_levels/pacman2b.ber
+		
+#	./so_long ./game_levels/pacman1b.ber
 #	./so_long ./game_levels/large.ber
 #	./so_long ./game_levels/medium.ber
 
