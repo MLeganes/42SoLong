@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/26 10:18:59 by x250              #+#    #+#             */
-/*   Updated: 2021/11/05 16:01:08 by amorcill         ###   ########.fr       */
+/*   Created: 2021/10/26 10:18:59 by amorcill          #+#    #+#             */
+/*   Updated: 2021/11/12 16:20:02 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "libft/libft.h"
 # include <fcntl.h>
 # include <stdio.h>
-//https://github.com/keuhdall/images_example
 
 /*
  Defines for the width and height of your window. I suggest you to do the same so
@@ -26,12 +25,6 @@
 # define WIN_MAX_HEIGHT 1080
 # define WIN_MAX_WIDTH 1920
 # define ZOOM 64
-
-// # define EVENT_KEY_PRESS 2
-// # define EVENT_KEY_DESTROYNOTIFY 17
-// # define MASK_KEY_PRESS 1L<<2
-// # define MASK_KEY_STRUCTURENOTIFY 1L<<17
-//# define EXIT_GAME 0
 
 # define PLAYER_DIR_A 1
 # define PLAYER_DIR_S 2
@@ -179,7 +172,6 @@ void	score_collectibles(t_mlx *mlx);
 void	init_load_ghost(t_mlx *mlx, int x, int y);
 void	load_image_ghost(t_mlx *mlx);
 void	load_ghost(t_mlx *mlx, int x, int y);
-
 int		ghost_move(t_mlx *mlx);
 int		ghost_check(t_mlx *mlx, int x, int y);
 void	ghost_move_secondpart(t_mlx *mlx, int x, int y);

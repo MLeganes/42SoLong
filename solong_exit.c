@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   solong_exit.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/12 16:15:52 by amorcill          #+#    #+#             */
+/*   Updated: 2021/11/12 16:15:54 by amorcill         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	exit_load(t_mlx *mlx, int w, int h)
@@ -8,7 +20,7 @@ void	exit_load(t_mlx *mlx, int w, int h)
 
 int	exit_game(t_mlx *mlx)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < IMG_MAX)
@@ -20,22 +32,36 @@ int	exit_game(t_mlx *mlx)
 	exit (0);
 }
 
-void game_win(t_mlx *mlx)
+void	game_win(t_mlx *mlx)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = (mlx->imap.width) / 2;
 	y = (mlx->imap.height) / 2;
-	
-	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_2].img, (x - 1) * ZOOM, (y - 1) * ZOOM);
-	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_2].img, (x) * ZOOM, (y - 1) * ZOOM);
-	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_2].img, (x + 1) * ZOOM, (y - 1) * ZOOM);
-	
-	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_2].img, (x - 1) * ZOOM, (y) * ZOOM);
-	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_2].img, (x) * ZOOM, (y) * ZOOM);
-	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->imgs[IMG_PATH_2].img, (x + 1) * ZOOM, (y) * ZOOM);
-	
+	map_load_path2(mlx, (x - 1), (y - 1));
+	map_load_path2(mlx, (x), (y - 1));
+	map_load_path2(mlx, (x + 1), (y - 1));
+	map_load_path2(mlx, (x - 1), (y));
+	map_load_path2(mlx, (x), (y));
+	map_load_path2(mlx, (x + 1), (y));
 	mlx_string_put(mlx->mlx, mlx->win, ((mlx->imap.width) / 2) * ZOOM,
-		((mlx->imap.height) / 2) * ZOOM, 0x00FFFFFFF, "YOU WIN!!!!!!");
+		((mlx->imap.height) / 2) * ZOOM, 0x00FFFFFFF, ":) YOU WIN!!!");
+}
+
+void	game_over(t_mlx *mlx)
+{
+	int	x;
+	int	y;
+
+	x = (mlx->imap.width) / 2;
+	y = (mlx->imap.height) / 2;
+	map_load_path2(mlx, (x - 1), (y - 1));
+	map_load_path2(mlx, (x), (y - 1));
+	map_load_path2(mlx, (x + 1), (y - 1));
+	map_load_path2(mlx, (x - 1), (y));
+	map_load_path2(mlx, (x), (y));
+	map_load_path2(mlx, (x + 1), (y));
+	mlx_string_put(mlx->mlx, mlx->win, ((mlx->imap.width) / 2) * ZOOM,
+		((mlx->imap.height) / 2) * ZOOM, 0x00FFFFFFF, ":| GAME OVER!!!");
 }
