@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 16:15:52 by amorcill          #+#    #+#             */
-/*   Updated: 2021/11/12 16:15:54 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/12 18:29:11 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,13 @@ void	exit_load(t_mlx *mlx, int w, int h)
 int	exit_game(t_mlx *mlx)
 {
 	int	i;
+	int	imgmax;
 
 	i = 0;
-	while (i < IMG_MAX)
+	imgmax = IMG_MAX;
+	if (mlx->bonus == 0)
+		imgmax = IMG_MAX - 1;
+	while (i < imgmax)
 	{
 		mlx_destroy_image(mlx->mlx, mlx->imgs[i].img);
 		i++;

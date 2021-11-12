@@ -6,7 +6,7 @@
 #    By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 11:24:29 by amorcill          #+#    #+#              #
-#    Updated: 2021/11/12 12:12:59 by amorcill         ###   ########.fr        #
+#    Updated: 2021/11/12 17:19:16 by amorcill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS	= solong_main.c \
 		  solong_init.c \
 		  solong_key_events.c \
 		  solong_map.c \
+		  solong_map_check.c \
 		  solong_map_load.c \
 		  solong_player.c \
 		  solong_exit.c \

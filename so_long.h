@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:18:59 by amorcill          #+#    #+#             */
-/*   Updated: 2021/11/12 16:20:02 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/12 18:31:21 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ void	map_load_init_player(t_mlx *mlx, int w, int h);
 void	map_check(t_mlx *mlx);
 void	map_update_path(t_mlx *mlx, int x, int y);
 void	map_update_player(t_mlx *mlx, int x, int y);
+void	map_valic_characters(t_mlx *mlx, char *s, int i);
 /*
  * Solong collectible 
  */
