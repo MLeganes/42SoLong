@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 17:44:03 by amorcill          #+#    #+#             */
-/*   Updated: 2021/11/12 18:44:24 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/12 19:06:16 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,25 +46,22 @@ void	player_move_w(t_mlx *mlx)
 
 void	player_update(t_mlx *mlx)
 {
-	int		new_xy[2];
-
-	new_xy[0] = mlx->player1.new_x;
-	new_xy[1] = mlx->player1.new_y;
-	if (mlx->map[new_xy[1]][new_xy[0]] == '0' ||
-		mlx->map[new_xy[1]][new_xy[0]] == 'C')
+	if (mlx->map[mlx->player1.new_y][mlx->player1.new_x] == '0' ||
+		mlx->map[mlx->player1.new_y][mlx->player1.new_x] == 'C')
 	{
-		if (mlx->map[new_xy[1]][new_xy[0]] == 'C')
+		if (mlx->map[mlx->player1.new_y][mlx->player1.new_x] == 'C')
 		{
 			collectible_decrease(mlx);
-			map_update_path(mlx, new_xy[0], new_xy[1]);
+			map_update_path(mlx, mlx->player1.new_x, mlx->player1.new_y);
 		}
 		map_update_path(mlx, mlx->player1.horizontal, mlx->player1.vertical);
-		map_update_player(mlx, new_xy[0], new_xy[1]);
+		map_update_player(mlx, mlx->player1.new_x, mlx->player1.new_y);
 		score_steps(mlx);
 	}
-	if (mlx->bonus == 1 && mlx->map[new_xy[1]][new_xy[0]] == 'G')
-		ghost_player_crash(mlx, new_xy[0], new_xy[1]);
-	if (mlx->map[new_xy[1]][new_xy[0]] == 'E')
+	if (mlx->bonus == 1
+		&& mlx->map[mlx->player1.new_y][mlx->player1.new_x] == 'G')
+		ghost_player_crash(mlx, mlx->player1.new_x, mlx->player1.new_y);
+	if (mlx->map[mlx->player1.new_y][mlx->player1.new_x] == 'E')
 	{
 		if (collectible_check(mlx) == 0)
 		{
@@ -72,7 +69,5 @@ void	player_update(t_mlx *mlx)
 			mlx->player1.game_on = 0;
 			game_win(mlx);
 		}
-	}
-	if (mlx->bonus == 1)
-		mlx_loop_hook(mlx->mlx, ghost_move, mlx);
+	}	
 }
