@@ -6,7 +6,7 @@
 #    By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 11:24:29 by amorcill          #+#    #+#              #
-#    Updated: 2021/11/05 14:22:02 by amorcill         ###   ########.fr        #
+#    Updated: 2021/11/12 12:12:59 by amorcill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,11 @@ SRCS	= solong_main.c \
 		  solong_score.c \
 		  solong_bonus.c \
 		  solong_load_bonus.c \
-  
 
+BONUS	= 0
+ 
 %.o: %.c
-	$(CC) $(SNTZ) $(FLAGS) -Ilibmlx -Ilibft -D BONUS=1 -c $< -o $@
+	$(CC) $(SNTZ) $(FLAGS) -Ilibmlx -Ilibft -D BONUS=$(BONUS) -c $< -o $@
 
 all: $(NAME)
 
@@ -53,6 +54,9 @@ fclean: clean
 	rm -f $(NAME_LK)
 
 re: fclean $(NAME)
+
+bonus: BONUS=1
+bonus: fclean all
 
 run:
 	./so_long ./maps/pacman2b.ber
