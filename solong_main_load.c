@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 20:41:00 by amorcill          #+#    #+#             */
-/*   Updated: 2021/11/05 15:54:50 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/12 16:40:39 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	main_load_map(t_mlx *mlx, char **argv)
 	mlx->map[lines] = NULL;
 }
 
-void main_load_image_map(t_mlx *mlx)
+void	main_load_image_map(t_mlx *mlx)
 {
 	mlx->imgs[IMG_PATH_1].img = mlx_xpm_file_to_image
 		(mlx->mlx, "./imgs/path.xpm", &mlx->imgs[IMG_PATH_1].width,
@@ -59,7 +59,7 @@ void main_load_image_map(t_mlx *mlx)
 			&mlx->imgs[IMG_COLLECT].height);
 }
 
-void main_load_image_player(t_mlx *mlx)
+void	main_load_image_player(t_mlx *mlx)
 {
 	mlx->imgs[IMG_PLAY_S].img = mlx_xpm_file_to_image(mlx->mlx,
 			"./imgs/pacmanDown.xpm", &mlx->imgs[IMG_PLAY_S].width,
