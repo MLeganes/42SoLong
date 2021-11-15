@@ -29,7 +29,7 @@ This project is for macOS, using MiniLibX requires AppKit and X11. There is a Mi
 * Man for MiniLibX - Simple Graphical Interface Library
 
 		man /usr/share/man/man3/mlx.1
-								mlx_loop.1
-								mlx_new_image.1
-								mlx_new_window.1
-								mlx_pixel_put.1
+		man /usr/share/man/man3/mlx_loop.1
+		man /usr/share/man/man3/mlx_new_image.1
+		man /usr/share/man/man3/mlx_new_window.1
+		man /usr/share/man/man3/mlx_pixel_put.1
