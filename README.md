@@ -1,39 +1,42 @@
 # 42SoLong
 
+This project is a very small 2D game. 
 
-# References
+## Prerequisites
 
-### [man]
-	MiniLibX - Simple Graphical Interface Library
-	man /usr/share/man/man3/mlx.1
-							mlx_loop.1        
-							mlx_new_image.1   
-							mlx_new_window.1  
-							mlx_pixel_put.1
+This project is for macOS, using MiniLibX requires AppKit and X11. There is a MiniLibX for Linux, no used in this project.
 
-### [info minilibx basic]
-	https://harm-smits.github.io/42docs/libs/minilibx 
-	https://github.com/qst0/ft_libgfx#graphics-branch-link-dump
-	https://github.com/keuhdall/images_example 
+## Installation
 
-### [git hub minilibx]
-	https://github.com/qst0/ft_libgfx
+* `git clone https://github.com/MLeganes/42SoLong` this repository
+* `cd 42SoLong`
 
-### [Code]
-	https://github.com/AmberLawr/so_long 
-	https://github.com/agavrel/sm64 		
+## Running
 
-### [Others links]
-- https://stackoverflow.com/c/42network/questions/531		
+* `make`
+* `make bonus` 
 
-  
-- https://qst0.github.io/ft_libgfx/man_mlx.html
-  
-- https://opengameart.org/content/dungeon-crawl-32x32-tiles
-- https://github.com/agnusmaximus/Mario-World
-- https://convertio.co/png-xpm/
-- https://makefiletutorial.com/
+* Star game with map ``` ./so_long map/pacman1.ber ```
+* Star bonus game ``` ./so_long map/pacman1b.ber ```
+
+## Further Reading / Useful Links
+
+* [minilibx-42docs](https://harm-smits.github.io/42docs/libs/minilibx)
+* [minilibx-graphics](https://github.com/qst0/ft_libgfx#graphics-branch-link-dump)
+* [minilibx-images](https://github.com/keuhdall/images_example)
+* [minilibx-more](https://github.com/qst0/ft_libgfx)
+
+* Man for MiniLibX - Simple Graphical Interface Library
+
+		man /usr/share/man/man3/mlx.1
+								mlx_loop.1
+								mlx_new_image.1
+								mlx_new_window.1
+								mlx_pixel_put.1
+
+* Development Browser Extensions
+  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
+  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
 
 
-### [Pacman]
-https://github.com/TheDigitalBug/pacman
+		
