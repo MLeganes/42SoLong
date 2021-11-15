@@ -33,10 +33,4 @@ This project is for macOS, using MiniLibX requires AppKit and X11. There is a Mi
 								mlx_new_image.1
 								mlx_new_window.1
 								mlx_pixel_put.1
-
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
-
-
-		
+								
