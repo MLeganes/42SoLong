@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 16:21:33 by amorcill          #+#    #+#             */
-/*   Updated: 2021/09/09 17:29:57 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/15 13:38:31 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		return ;
 	}
 	last = ft_lstlast(*lst);
-	
 	last->next = new;
 	new->next = NULL;
 }
