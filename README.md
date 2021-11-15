@@ -8,7 +8,7 @@ This project is for macOS, using MiniLibX requires AppKit and X11. There is a Mi
 
 ## Installation
 
-* `git clone https://github.com/MLeganes/42SoLong` this repository
+* `git clone git@github.com:MLeganes/42SoLong.git` this repository
 * `cd 42SoLong`
 
 ## Running
@@ -33,4 +33,3 @@ This project is for macOS, using MiniLibX requires AppKit and X11. There is a Mi
 								mlx_new_image.1
 								mlx_new_window.1
 								mlx_pixel_put.1
-								
