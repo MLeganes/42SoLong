@@ -1,13 +1,13 @@
 # 42SoLong
 
-## To Dos
-
-	- [x] makefile - relinking.
-	- [ ] map checks new line at the end.
-	- [ ] max screen size.
-	- [ ] gif for the readme
-
 This project is a very small 2D game.
+
+## To do list
+
+- [x] makefile - relinking.
+- [ ] map checks new line at the end.
+- [ ] max screen size.
+- [ ] gif for the readme :nerd_face:
 
 ## Prerequisites
 
