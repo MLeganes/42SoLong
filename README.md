@@ -26,7 +26,7 @@ This project is for macOS, using MiniLibX requires AppKit and X11. There is a Mi
 * Star game with map ``` ./so_long map/pacman1.ber ```
 * Star bonus game ``` ./so_long map/pacman1b.ber ```
 
-## Further Reading / Useful Links
+## Useful Links
 
 * [minilibx-42docs](https://harm-smits.github.io/42docs/libs/minilibx)
 * [minilibx-graphics](https://github.com/qst0/ft_libgfx#graphics-branch-link-dump)
