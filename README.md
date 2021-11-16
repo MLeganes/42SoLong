@@ -1,6 +1,13 @@
 # 42SoLong
 
-This project is a very small 2D game. 
+## To Dos
+
+	- makefile - relinking.
+	- map checks new line at the end.
+	- max screen size.
+	- gif for the readme
+
+This project is a very small 2D game.
 
 ## Prerequisites
 
@@ -33,3 +40,12 @@ This project is for macOS, using MiniLibX requires AppKit and X11. There is a Mi
 		man /usr/share/man/man3/mlx_new_image.1
 		man /usr/share/man/man3/mlx_new_window.1
 		man /usr/share/man/man3/mlx_pixel_put.1
+
+## Sanitize (To test)
+
+Add -g in gcc command.
+
+	-fsanitize=leak
+	-fsanitize=address
+
+* [sanitize](https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer)
