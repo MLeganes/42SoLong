@@ -2,10 +2,10 @@
 
 ## To Dos
 
-	- makefile - relinking.
-	- map checks new line at the end.
-	- max screen size.
-	- gif for the readme
+	- [x] makefile - relinking.
+	- [ ] map checks new line at the end.
+	- [ ] max screen size.
+	- [ ] gif for the readme
 
 This project is a very small 2D game.
 
@@ -19,7 +19,7 @@ This project is for macOS, using MiniLibX requires AppKit and X11. There is a Mi
 * `cd 42SoLong`
 
 ## Running
-
+ 
 * `make`
 * `make bonus` 
 
