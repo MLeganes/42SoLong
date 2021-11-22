@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:18:59 by amorcill          #+#    #+#             */
-/*   Updated: 2021/11/12 18:31:21 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/22 15:27:46 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
  Defines for the width and height of your window. I suggest you to do the same so
  you can change easily the size of your window later if needed.
 */
-# define WIN_MAX_HEIGHT 1080
-# define WIN_MAX_WIDTH 1920
+# define WIN_MAX_HEIGHT 1440
+# define WIN_MAX_WIDTH 2560
 # define ZOOM 64
 
 # define PLAYER_DIR_A 1
@@ -156,11 +156,13 @@ void	game_win(t_mlx *mlx);
 void	resize_img(t_mlx *mlx);
 void	ft_copy_px(t_img *data, int x, int y, int color);
 void	ft_create_img(t_img *newimg, t_img *oldimg, int scale);
+void	ft_maximum_screen(t_mlx *mlx);
 /*
  * Solong utils
  */
 void	ft_remove_eol(char *s);
-int		ft_count_lines(t_mlx *mlx, char **argv);
+void	ft_check_emptyline(char *line);
+void	ft_count_lines(t_mlx *mlx, char **argv);
 /*
  * Solong score
  */

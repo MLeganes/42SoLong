@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 16:04:27 by amorcill          #+#    #+#             */
-/*   Updated: 2021/11/12 19:34:59 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/22 15:36:55 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,14 @@ void	ft_copy_px(t_img *data, int x, int y, int color)
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
+}
+
+void	ft_maximum_screen(t_mlx *mlx)
+{	
+	if (mlx->imap.height * mlx->imgs[0].height > WIN_MAX_HEIGHT
+		|| mlx->imap.width * mlx->imgs[0].width > WIN_MAX_WIDTH)
+	{
+		error_print_exit("[map error] Pacman can not play,"
+			" is lost in the screen!!!");
+	}
 }

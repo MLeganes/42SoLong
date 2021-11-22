@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 20:41:00 by amorcill          #+#    #+#             */
-/*   Updated: 2021/11/12 16:40:39 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/22 15:05:15 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	main_load_image_map(t_mlx *mlx)
 	mlx->imgs[IMG_COLLECT].img = mlx_xpm_file_to_image(mlx->mlx,
 			"./imgs/button.xpm", &mlx->imgs[IMG_COLLECT].width,
 			&mlx->imgs[IMG_COLLECT].height);
+	ft_maximum_screen(mlx);
 }
 
 void	main_load_image_player(t_mlx *mlx)
