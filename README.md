@@ -6,7 +6,7 @@ This project is a very small 2D game.
 
 - [x] makefile - relinking.
 - [x] map checks new line at the end.
-- [ ] max screen size.
+- [x] max screen size.
 - [ ] gif for the readme :nerd_face:
 
 ## Prerequisites
