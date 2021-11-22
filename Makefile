@@ -6,7 +6,7 @@
 #    By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 11:24:29 by amorcill          #+#    #+#              #
-#    Updated: 2021/11/16 13:00:28 by amorcill         ###   ########.fr        #
+#    Updated: 2021/11/22 09:07:45 by amorcill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ fclean: clean
 re: fclean $(NAME)
 
 bonus: BONUS=1
-bonus: fclean all
+bonus: all
 		
 libft/libft.a:
 	make -C libft all
