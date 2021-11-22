@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:37:26 by amorcill          #+#    #+#             */
-/*   Updated: 2021/11/12 19:07:44 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/22 09:14:55 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,5 @@ int	main(int argc, char **argv)
 	mlx_hook(mlx.win, 17, 1L << 17, exit_game, &mlx);
 	score_print(&mlx);
 	mlx_loop(mlx.mlx);
-	system("leaks so_long");
 	return (EXIT_SUCCESS);
 }
