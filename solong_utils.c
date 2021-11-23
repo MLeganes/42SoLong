@@ -6,7 +6,7 @@
 /*   By: amorcill <amorcill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 19:25:05 by amorcill          #+#    #+#             */
-/*   Updated: 2021/11/22 14:54:01 by amorcill         ###   ########.fr       */
+/*   Updated: 2021/11/23 19:13:40 by amorcill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,14 @@ void	ft_count_lines(t_mlx *mlx, char **argv)
 		("[open file error] Error to open file!Check file.");
 	line = get_next_line(fd);
 	ft_check_emptyline(line);
+	ft_remove_eol(line);
 	len = ft_strlen(line);
 	while (line)
 	{
 		free(line);
 		line = get_next_line(fd);
 		ft_check_emptyline(line);
+		ft_remove_eol(line);
 		lines++;
 	}
 	close(fd);
