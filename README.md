@@ -2,12 +2,14 @@
 
 This project is a very small 2D game.
 
+![Pacman lost!](gifs/pacman-win.gif)
+
 ## To do list
 
 - [x] makefile - relinking.
 - [x] map checks new line at the end.
 - [x] max screen size.
-- [ ] gif for the readme :nerd_face:
+- [x] gif for the readme :nerd_face:
 
 ## Prerequisites
 
