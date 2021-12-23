@@ -2,7 +2,7 @@
 
 This project is a very small 2D game.
 
-![Pacman lost!](gifs/pacman-win.gif)
+![Pacman win!](gifs/solong.gif)
 
 ## To do list
 
