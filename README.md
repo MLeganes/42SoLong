@@ -4,13 +4,6 @@ This project is a very small 2D game.
 
 ![Pacman win!](gifs/solong.gif)
 
-## To do list
-
-- [x] makefile - relinking.
-- [x] map checks new line at the end.
-- [x] max screen size.
-- [x] gif for the readme :nerd_face:
-
 ## Prerequisites
 
 This project is for macOS, using MiniLibX requires AppKit and X11. There is a MiniLibX for Linux, no used in this project.
